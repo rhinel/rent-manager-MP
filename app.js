@@ -1,17 +1,24 @@
 //app.js
 App({
+  // data
+  globalData: {
+    userInfo: null
+  },
+  // 生命周期
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
+    // 调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
   },
-  getUserInfo:function(cb){
+  // 方法定义
+  getUserInfo: function (cb) {
+    // 获取用户信息
     var that = this
-    if(this.globalData.userInfo){
+    if (this.globalData.userInfo) {
       typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-      //调用登录接口
+    } else {
+      // 调用登录接口
       wx.login({
         success: function () {
           wx.getUserInfo({
@@ -23,8 +30,5 @@ App({
         }
       })
     }
-  },
-  globalData:{
-    userInfo:null
   }
 })
