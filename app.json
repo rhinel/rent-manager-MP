@@ -2,8 +2,8 @@
   "debug": true,
   "pages": [
     "pages/index/index",
-    "pages/water/water",
-    "pages/electric/electric"
+    "pages/wande/wande",
+    "pages/house/house"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -14,22 +14,22 @@
   },
   "tabBar": {
     "color": "#333333",
-    "selectedColor": "#20A0FF",
+    "selectedColor": "#1AAD19",
     "backgroundColor": "#fff",
     "borderStyle": "white",
     "position": "bottom",
     "list": [
       {
-        "pagePath": "pages/water/water",
-        "text": "抄水表",
-        "iconPath": "assets/icon-water.png",
-        "selectedIconPath": "assets/icon-water-select.png"
+        "pagePath": "pages/wande/wande",
+        "text": "水电管理",
+        "iconPath": "assets/icon-wande.png",
+        "selectedIconPath": "assets/icon-wande-select.png"
       },
       {
-        "pagePath": "pages/electric/electric",
-        "text": "抄电表",
-        "iconPath": "assets/icon-electric.png",
-        "selectedIconPath": "assets/icon-electric-select.png"
+        "pagePath": "pages/house/house",
+        "text": "房屋信息",
+        "iconPath": "assets/icon-house.png",
+        "selectedIconPath": "assets/icon-house-select.png"
       }
     ]
   }

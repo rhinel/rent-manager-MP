@@ -18,8 +18,8 @@ let request = (path, data, callscue, callerr, callcomp) => {
                 })
                 wx.showToast({
                     title: String(res.data.code),
-                    icon: 'loading',
                     image: '../../assets/error.png',
+                    icon: 'loading',
                     duration: 2000
                 })
             } else if (res.data.code) {
@@ -27,8 +27,8 @@ let request = (path, data, callscue, callerr, callcomp) => {
                 if (!callerr) {
                     wx.showToast({
                         title: String(res.data.code),
-                        icon: 'loading',
                         image: '../../assets/error.png',
+                        icon: 'loading',
                         duration: 2000
                     })
                 } else {
@@ -50,8 +50,8 @@ let request = (path, data, callscue, callerr, callcomp) => {
         fail(res) {
             wx.showToast({
                 title: '接口出错',
-                icon: 'loading',
                 image: '../../assets/error.png',
+                icon: 'loading',
                 duration: 2000
             })
         },

@@ -6,7 +6,10 @@ let ajax = require('../../assets/utils/request.js')
 Page({
   // data
   data: {
-    userInfo: {},
+    userInfo: {
+      nickName: 'Friend',
+      avatarUrl: '../../assets/photo.jpg'
+    },
     login: {
       name: '',
       pwd: ''
@@ -28,7 +31,7 @@ Page({
     })
     ajax('/inner/auth/check', {}, (res) => {
       wx.switchTab({
-        url: '/pages/water/water'
+        url: '/pages/wande/wande'
       })
     }, (res) => { })
   },
@@ -83,14 +86,14 @@ Page({
       wx.setStorageSync('token', res.data.data)
       setTimeout(() => {
         wx.switchTab({
-          url: '/pages/water/water'
+          url: '/pages/wande/wande'
         })
       }, 1000)
     }, (res) => {
       wx.showToast({
         title: '输入错误', // String(res.data.msg)
-        icon: 'loading',
         image: '../../assets/error.png',
+        icon: 'loading',
         duration: 2000
       })
     })

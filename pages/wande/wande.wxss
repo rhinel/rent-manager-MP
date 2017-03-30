@@ -1,0 +1,10 @@
+/**index.wxss**/
+
+.wande .weui-icon-search {
+  padding-top: 2px;
+  vertical-align: top;
+}
+
+.wande .weui-search-bar__text {
+  vertical-align: top;
+}

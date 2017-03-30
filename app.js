@@ -5,8 +5,8 @@ App({
     userInfo: null
   },
   // 生命周期
-  onLaunch(path, query, scene) {
-    console.log(arguments)
+  onLaunch(options) {
+    console.log(options)
   },
   // 方法定义
   getUserInfo(cb) {

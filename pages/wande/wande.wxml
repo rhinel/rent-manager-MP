@@ -1,0 +1,43 @@
+
+<!--wande.wxml-->
+<view class="container wande page">
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+
+        <!--搜索-->
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+              <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <picker class="weui-search-bar__input" mode="date" value="{{waterDateView}}" start="2015-09-01" end="2017-09-01" bindchange="bindWaterDateChange">
+                  <label class="weui-search-bar__label">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">{{waterDateView}}</view>
+                  </label>
+                </picker>
+              </view>
+            </view>
+          </view>
+
+          <!--抄表-->
+          <view class="page__hd">
+            sdfsf
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          electric
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

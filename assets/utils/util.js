@@ -15,6 +15,14 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+let formatDate = (date) => {
+  let year = date.getFullYear()
+  let month = date.getMonth() + 1
+  let day = date.getDate()
+  return [year, month, day].map(formatNumber).join('-')
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatDate: formatDate
 }
