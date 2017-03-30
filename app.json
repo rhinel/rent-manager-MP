@@ -7,25 +7,29 @@
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#f8f8f8",
     "navigationBarTitleText": "rent-manager",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "color": "#eee",
-    "selectedColor": "#000",
-    "backgroundColor": "#F9FAFC",
+    "color": "#333333",
+    "selectedColor": "#20A0FF",
+    "backgroundColor": "#fff",
     "borderStyle": "white",
     "position": "bottom",
     "list": [
       {
         "pagePath": "pages/water/water",
-        "text": "抄水表"
+        "text": "抄水表",
+        "iconPath": "assets/icon-water.png",
+        "selectedIconPath": "assets/icon-water-select.png"
       },
       {
         "pagePath": "pages/electric/electric",
-        "text": "抄电表"
+        "text": "抄电表",
+        "iconPath": "assets/icon-electric.png",
+        "selectedIconPath": "assets/icon-electric-select.png"
       }
     ]
   }

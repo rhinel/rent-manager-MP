@@ -1,18 +1,40 @@
+//electric.js
+let ajax = require('../../assets/utils/request.js')
 Page({
-  data:{},
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+  data: {
+
   },
-  onReady:function(){
-    // 页面渲染完成
+  onLoad(options) {
+    // 生命周期函数--监听页面加载
+    ajax('/inner/auth/check', {}, (res) => { }, (res) => {
+      wx.redirectTo({
+        url: '/pages/index/index'
+      })
+    })
   },
-  onShow:function(){
-    // 页面显示
+  onReady() {
+    // 生命周期函数--监听页面初次渲染完成
+
   },
-  onHide:function(){
-    // 页面隐藏
+  onShow() {
+    // 生命周期函数--监听页面显示
+
   },
-  onUnload:function(){
-    // 页面关闭
+  onHide() {
+    // 生命周期函数--监听页面隐藏
+
+  },
+  onUnload() {
+    // 生命周期函数--监听页面卸载
+
+  },
+  onPullDownRefresh() {
+    // 页面相关事件处理函数--监听用户下拉动作
+    wx.stopPullDownRefresh()
+    return false
+  },
+  onReachBottom() {
+    // 页面上拉触底事件的处理函数
+    return false
   }
 })
