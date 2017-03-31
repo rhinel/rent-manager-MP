@@ -1,3 +1,4 @@
+// let host = 'https://localhost/api'
 let host = 'https://www.rhinel.xyz/api'
 
 let request = (path, data, callscue, callerr, callcomp) => {
@@ -56,11 +57,8 @@ let request = (path, data, callscue, callerr, callcomp) => {
             })
         },
         complete() {
-            if (!callcomp) {
-                console.log(path + '接口完成')
-            } else {
-                callcomp()
-            }
+            console.log(path + '接口完成')
+            callcomp && callcomp()
         }
     })
 }

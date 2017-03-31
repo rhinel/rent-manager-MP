@@ -10,21 +10,70 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
 
+    houseList: [],
+
+    today: formatDate(new Date()),
     waterDateView: formatDate(new Date()),
-    waterDateViewShowed: false,
+    waterDate: [],
+    addWater: {
+      haoId: '',
+      water: '',
+      remark: '',
+      addTime: formatDate(new Date())
+    },
+    addWaterVD: {
+      haoId: true,
+      water: true,
+      remark: true,
+      addTime: true
+    },
+    addWaterSelect: {
+      haoIndex: 0
+    },
+
+    electricDateView: formatDate(new Date()),
+    electricDate: [],
+    addElectric: {
+      haoId: '',
+      electric: '',
+      remark: '',
+      addTime: formatDate(new Date())
+    },
+    addElectricVD: {
+      haoId: true,
+      electric: true,
+      remark: true,
+      addTime: true
+    },
+    addElectricSelect: {
+      haoIndex: 0
+    }
   },
   // 生命周期
   onLoad(options) {
     // 生命周期函数--监听页面加载
     var that = this
+    // 处理sliderWidth
     wx.getSystemInfo({
       success(res) {
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-        });
+        })
       }
     })
+    // 获取数据
+    Promise.all([
+      new Promise((resolve) => {
+        this.bindGetHouse(resolve)
+      }),
+      new Promise((resolve) => {
+        this.bindWaterDateChange(false, resolve)
+      }),
+      new Promise((resolve) => {
+        this.bindElectricDateChange(false, resolve)
+      })
+    ])
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.redirectTo({
         url: '/pages/index/index'
@@ -49,7 +98,19 @@ Page({
   },
   onPullDownRefresh() {
     // 页面相关事件处理函数--监听用户下拉动作
-    wx.stopPullDownRefresh()
+    Promise.all([
+      new Promise((resolve) => {
+        this.bindGetHouse(resolve)
+      }),
+      new Promise((resolve) => {
+        this.bindWaterDateChange(false, resolve)
+      }),
+      new Promise((resolve) => {
+        this.bindElectricDateChange(false, resolve)
+      })
+    ]).then((data) => {
+      wx.stopPullDownRefresh()
+    })
     return false
   },
   onReachBottom() {
@@ -63,9 +124,236 @@ Page({
       activeIndex: e.currentTarget.id
     })
   },
-  bindWaterDateChange(e) {
+  bindGetHouse(resolve) {
+    let that = this
+    ajax('/inner/house/list', {}, (res) => {
+      res.data.data.forEach((i) => {
+        i.fang && !i.fanghao && (i.fanghao = i.fang + i.hao)
+      })
+      that.setData({
+        houseList: res.data.data,
+        'addWaterSelect.haoIndex': 0,
+        'addWater.haoId': res.data.data[0] ? res.data.data[0]._id : '',
+        'addWaterVD.haoId': true,
+        'addElectricSelect.haoIndex': 0,
+        'addElectric.haoId': res.data.data[0] ? res.data.data[0]._id : '',
+        'addElectricVD.haoId': true
+      })
+    }, (res) => {
+      wx.showToast({
+        title: String(res.data.msg),
+        image: '../../assets/error.png',
+        icon: 'loading',
+        duration: 2000
+      })
+    }, () => {
+      resolve && resolve()
+    })
+  },
+  bindWaterDateChange(e, resolve) {
+    let that = this
+    that.setData({
+      waterDateView: e ? e.detail.value : that.data.waterDateView
+    })
+    // 获取数据
+    e !== false && wx.showToast({
+      title: '获取中',
+      icon: 'loading',
+      mask: true,
+      duration: 2000000
+    })
+    ajax('/inner/water/findByDate', {
+      waterDate: that.data.waterDateView
+    }, (res) => {
+      that.setData({
+        waterDate: res.data.data
+      })
+      e !== false && wx.showToast({
+        title: '获取成功',
+        icon: 'success',
+        duration: 1000
+      })
+    }, (res) => {
+      wx.showToast({
+        title: String(res.data.msg),
+        image: '../../assets/error.png',
+        icon: 'loading',
+        duration: 2000
+      })
+    }, () => {
+      resolve && resolve()
+    })
+  },
+  bindHouseWaterPickerChange(e) {
+    let that = this
+    that.setData({
+      'addWaterSelect.haoIndex': e ? e.detail.value : '',
+      'addWater.haoId': e ? that.data.houseList[e.detail.value]._id : '',
+      'addWaterVD.haoId': true
+    })
+  },
+  bindKeyInputWater(e) {
     this.setData({
-      waterDateView: e.detail.value
+      'addWater.water': e ? e.detail.value : '',
+      'addWaterVD.water': true
+    })
+  },
+  bindAddWaterDateChange(e) {
+    this.setData({
+      'addWater.addTime': e ? e.detail.value : '',
+      'addWaterVD.addTime': true
+    })
+  },
+  bindKeyInputWaterRemark(e) {
+    this.setData({
+      'addWater.remark': e ? e.detail.value : '',
+      'addWaterVD.remark': true
+    })
+  },
+  bindWaterGoToToday(e) {
+    this.bindWaterDateChange({
+      detail: {
+        value: this.data.today
+      }
+    })
+  },
+  bindAddWater(e) {
+    let that = this
+    that.setData({
+      'addWaterVD.haoId': !!that.data.addWater.haoId,
+      'addWaterVD.water': !!that.data.addWater.water,
+      'addWaterVD.addTime': !!that.data.addWater.addTime
+    })
+    if (!this.data.addWaterVD.haoId || !this.data.addWaterVD.water || !this.data.addWaterVD.addTime) {
+      return
+    }
+    // 添加水表记录
+    wx.showToast({
+      title: '抄表中',
+      icon: 'loading',
+      mask: true,
+      duration: 2000000
+    })
+    ajax('/inner/water/add', that.data.addWater, (res) => {
+      wx.showToast({
+        title: '添加成功',
+        icon: 'success',
+        duration: 1000
+      })
+      that.data.addWater.addTime == that.data.waterDateView && that.bindWaterDateChange(false)
+      that.setData({
+        'addWater.water': ''
+      })
+    }, (res) => {
+      wx.showToast({
+        title: String(res.data.msg),
+        image: '../../assets/error.png',
+        icon: 'loading',
+        duration: 2000
+      })
+    })
+  },
+  bindElectricDateChange(e, resolve) {
+    let that = this
+    that.setData({
+      wlectricDateView: e ? e.detail.value : that.data.electricDateView
+    })
+    // 获取数据
+    e !== false && wx.showToast({
+      title: '获取中',
+      icon: 'loading',
+      mask: true,
+      duration: 2000000
+    })
+    ajax('/inner/electric/findByDate', {
+      electricDate: that.data.electricDateView
+    }, (res) => {
+      that.setData({
+        electricDate: res.data.data
+      })
+      e !== false && wx.showToast({
+        title: '获取成功',
+        icon: 'success',
+        duration: 1000
+      })
+    }, (res) => {
+      wx.showToast({
+        title: String(res.data.msg),
+        image: '../../assets/error.png',
+        icon: 'loading',
+        duration: 2000
+      })
+    }, () => {
+      resolve && resolve()
+    })
+  },
+  bindHouseElectricPickerChange(e) {
+    let that = this
+    that.setData({
+      'addElectricSelect.haoIndex': e ? e.detail.value : '',
+      'addElectric.haoId': e ? that.data.houseList[e.detail.value]._id : '',
+      'addElectricVD.haoId': true
+    })
+  },
+  bindKeyInputElectric(e) {
+    this.setData({
+      'addElectric.electric': e ? e.detail.value : '',
+      'addElectricVD.electric': true
+    })
+  },
+  bindAddElectricDateChange(e) {
+    this.setData({
+      'addElectric.addTime': e ? e.detail.value : '',
+      'addElectricVD.addTime': true
+    })
+  },
+  bindKeyInputElectricRemark(e) {
+    this.setData({
+      'addElectric.remark': e ? e.detail.value : '',
+      'addElectricVD.remark': true
+    })
+  },
+  bindElectricGoToToday(e) {
+    this.bindElectricDateChange({
+      detail: {
+        value: this.data.today
+      }
+    })
+  },
+  bindAddElectric(e) {
+    let that = this
+    that.setData({
+      'addElectricVD.haoId': !!that.data.addElectric.haoId,
+      'addElectricVD.electric': !!that.data.addElectric.electric,
+      'addElectricVD.addTime': !!that.data.addElectric.addTime
+    })
+    if (!this.data.addElectricVD.haoId || !this.data.addElectricVD.electric || !this.data.addElectricVD.addTime) {
+      return
+    }
+    // 添加水表记录
+    wx.showToast({
+      title: '抄表中',
+      icon: 'loading',
+      mask: true,
+      duration: 2000000
+    })
+    ajax('/inner/electric/add', that.data.addElectric, (res) => {
+      wx.showToast({
+        title: '添加成功',
+        icon: 'success',
+        duration: 1000
+      })
+      that.data.addElectric.addTime == that.data.electricDateView && that.bindElectricDateChange(false)
+      that.setData({
+        'addElectric.electric': ''
+      })
+    }, (res) => {
+      wx.showToast({
+        title: String(res.data.msg),
+        image: '../../assets/error.png',
+        icon: 'loading',
+        duration: 2000
+      })
     })
   }
 })

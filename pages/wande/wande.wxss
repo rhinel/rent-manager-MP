@@ -1,5 +1,9 @@
 /**index.wxss**/
 
+.wande .required {
+  color: #e64340;
+}
+
 .wande .weui-icon-search {
   padding-top: 2px;
   vertical-align: top;
@@ -7,4 +11,20 @@
 
 .wande .weui-search-bar__text {
   vertical-align: top;
+}
+
+.wande .wande-form {
+  margin-bottom: 10px;
+}
+
+.wande .wande-form.weui-panel::before {
+  border-top: 0;
+}
+
+.wande .wande-form .button-sp-area {
+  padding-bottom: 10px;
+}
+
+.wande .wande-form .weui-cells::before {
+  border-top: 0;
 }

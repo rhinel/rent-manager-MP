@@ -41,6 +41,10 @@ page {
 
 .button-sp-area {
   margin: 0 auto;
-  padding-top: 15px;
+  padding-top: 10px;
   width: 60%;
+}
+
+.weui-select_in-select-after{
+  border-right: 0;
 }
