@@ -110,6 +110,11 @@ Page({
       })
     ]).then((data) => {
       wx.stopPullDownRefresh()
+      wx.showToast({
+        title: '获取成功',
+        icon: 'success',
+        duration: 1000
+      })
     })
     return false
   },

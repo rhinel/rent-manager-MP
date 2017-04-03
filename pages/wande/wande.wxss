@@ -28,3 +28,7 @@
 .wande .wande-form .weui-cells::before {
   border-top: 0;
 }
+
+.wande .weui-loadmore__tips_in-line {
+  background-color: #f8f8f8;
+}

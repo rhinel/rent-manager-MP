@@ -106,8 +106,14 @@
               </view>
             </view>
           </view>
+          <view class="page__bd" wx:if="{{!waterDate.length}}">
+            <view class="weui-loadmore weui-loadmore_line">
+              <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+            </view>
+          </view>
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+
           <!--抄表-->
           <view class="weui-panel wande-form">
             <form>
@@ -198,6 +204,11 @@
               <view class="weui-media-box weui-media-box_text" wx:for="{{electricDate}}" wx:key="_id">
                 <view class="weui-media-box__title">{{item.fanghao}}：{{item.electric}}度</view>
               </view>
+            </view>
+          </view>
+          <view class="page__bd" wx:if="{{!electricDate.length}}">
+            <view class="weui-loadmore weui-loadmore_line">
+              <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
             </view>
           </view>
         </view>
