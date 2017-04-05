@@ -3,7 +3,8 @@
   "pages": [
     "pages/index/index",
     "pages/wande/wande",
-    "pages/house/house"
+    "pages/house/house",
+    "pages/house-det/house-det"
   ],
   "window": {
     "backgroundTextStyle": "dark",

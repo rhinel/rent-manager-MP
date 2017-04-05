@@ -24,7 +24,7 @@
   <view class="weui-panel" wx:if="{{houseDateFiltered.length}}">
     <view class="weui-panel__hd">月度周期：{{month.month}}</view>
     <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text" wx:for="{{houseDateFiltered}}" wx:key="_id">
+      <view class="weui-media-box weui-media-box_text" wx:for="{{houseDateFiltered}}" wx:key="_id" data-id="{{item._id}}" bindtap="bindGoToDet">
         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.fanghao}}</view>
         <view class="weui-media-box__desc weui-cell__ft_in-access">
           <view class="weui-badge" wx:if="{{!item.rents[0]}}">未计租</view>

@@ -14,7 +14,7 @@ Page({
     this.bindGetHouse()
     // 生命周期函数--监听页面加载
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
-      wx.redirectTo({
+      wx.reLaunch({
         url: '/pages/index/index'
       })
     })
@@ -128,5 +128,10 @@ Page({
       filterShowed: true
     })
     this.bindGetFilterDate()
+  },
+  bindGoToDet(e) {
+    wx.navigateTo({
+      url: '/pages/house-det/house-det?id=' + e.currentTarget.dataset.id
+    })
   }
 })

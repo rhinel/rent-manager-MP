@@ -75,7 +75,7 @@ Page({
       })
     ])
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
-      wx.redirectTo({
+      wx.reLaunch({
         url: '/pages/index/index'
       })
     })
