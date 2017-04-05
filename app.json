@@ -27,7 +27,7 @@
       },
       {
         "pagePath": "pages/house/house",
-        "text": "房屋信息",
+        "text": "最新月度",
         "iconPath": "assets/icon-house.png",
         "selectedIconPath": "assets/icon-house-select.png"
       }

@@ -1,4 +1,4 @@
-/**index.wxss**/
+/**wande.wxss**/
 
 .wande .required {
   color: #e64340;

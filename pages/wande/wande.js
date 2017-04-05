@@ -261,7 +261,7 @@ Page({
   bindElectricDateChange(e, resolve) {
     let that = this
     that.setData({
-      wlectricDateView: e ? e.detail.value : that.data.electricDateView
+      electricDateView: e ? e.detail.value : that.data.electricDateView
     })
     // 获取数据
     e !== false && wx.showToast({
