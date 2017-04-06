@@ -27,12 +27,24 @@
       <view class="weui-media-box weui-media-box_text" wx:for="{{houseDateFiltered}}" wx:key="_id" data-id="{{item._id}}" bindtap="bindGoToDet">
         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.fanghao}}</view>
         <view class="weui-media-box__desc weui-cell__ft_in-access">
-          <view class="weui-badge" wx:if="{{item.leaseId.status != 1}}" style="background-color: #888;">空置</view>
+
+          <!--没有租住和收租为空置-->
+          <view class="weui-badge" wx:if="{{item.leaseId.status != 1 && !item.rents[0]}}" style="background-color: #888;">空置</view>
+
+          <!--有租住、没有收租为未计租-->
           <view class="weui-badge" wx:if="{{item.leaseId.status == 1 && !item.rents[0]}}">未计租</view>
+
+          <!--有收租的价格，最新一次-->
           <view class="money" wx:if="{{item.rents[0]}}">￥{{item.rents[0].calRentResult}}元</view>
+
+          <!--如果多条记录显示多条，看详情-->
           <view class="weui-badge" wx:if="{{item.rents.length > 1}}" style="margin-left: 5px;background-color: #576b95;">多条</view>
-          <view class="weui-badge" wx:if="{{item.leaseId.status == 1}}" style="margin-left: 5px;background-color: #576b95;">{{payTypeVal[item.leaseId.payType]}}</view>
-          <view class="weui-badge" wx:if="{{item.leaseId.status == 1}}" style="margin-left: 5px;background-color: #576b95;">{{item.leaseId.payDay}}日</view>
+
+          <!--租住交租信息-->
+          <view class="weui-badge" wx:if="{{item.rents[0]}}" style="margin-left: 5px;background-color: #576b95;">{{payTypeVal[item.rents[0].lease.payType]}}</view>
+          <view class="weui-badge" wx:if="{{item.rents[0]}}" style="margin-left: 5px;background-color: #576b95;">{{item.rents[0].lease.payDay}}日</view>
+
+          <!--交租状态-->
           <view class="weui-badge" wx:if="{{item.rents[0] && item.rents[0].type.type.length == 0}}" style="margin-left: 5px;">新建</view>
           <view class="weui-badge" wx:for="{{item.rents[0] && item.rents[0].type.type}}" wx:key="*this" wx:for-item="type" style="margin-left: 5px;background-color: #1AAD19;">{{typesVal[type]}}</view>
         </view>
