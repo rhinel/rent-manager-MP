@@ -52,6 +52,9 @@ Page({
     // 页面相关事件处理函数--监听用户下拉动作
     Promise.all([
       new Promise((resolve) => {
+        this.bindGetMonth(resolve)
+      }),
+      new Promise((resolve) => {
         this.bindGetHouse(resolve)
       })
     ]).then((data) => {

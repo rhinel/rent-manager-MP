@@ -1,0 +1,16 @@
+/**house-det.wxss**/
+
+.house-det .weui-form-preview__value {
+  text-align: right;
+}
+
+.house-det .badge1 {
+  padding: 0.1em 0.4em;
+  margin-left: 4px;
+  vertical-align: top;
+  background-color: #1AAD19;
+}
+
+.house-det .weui-media-box__desc {
+  -webkit-line-clamp: initial;
+}
