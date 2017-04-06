@@ -22,11 +22,17 @@ Page({
   // 生命周期
   onLoad() {
     let that = this
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 2000000
+    })
     // 调用应用实例的方法获取全局数据
     app.getUserInfo((userInfo) => {
       that.setData({
         userInfo: userInfo
       })
+      wx.hideToast()
     })
     ajax('/inner/auth/check', {}, (res) => {
       wx.switchTab({

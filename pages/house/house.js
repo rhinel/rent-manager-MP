@@ -10,9 +10,22 @@ Page({
     typesVal: ['', '已交', '给单', '房东']
   },
   onLoad(options) {
-    this.bindGetMonth()
-    this.bindGetHouse()
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 2000000
+    })
     // 生命周期函数--监听页面加载
+    Promise.all([
+      new Promise((resolve) => {
+        this.bindGetMonth(resolve)
+      }),
+      new Promise((resolve) => {
+        this.bindGetHouse(resolve)
+      })
+    ]).then((data) => {
+      wx.hideToast()
+    })
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
         url: '/pages/index/index'
@@ -61,6 +74,7 @@ Page({
       that.setData({
         month: res.data.data
       })
+      resolve && resolve()
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
@@ -68,8 +82,6 @@ Page({
         icon: 'loading',
         duration: 2000
       })
-    }, () => {
-      resolve && resolve()
     })
   },
   bindGetHouse(resolve) {
@@ -79,6 +91,7 @@ Page({
         houseDate: res.data.data
       })
       that.bindGetFilterDate()
+      resolve && resolve()
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
@@ -86,8 +99,6 @@ Page({
         icon: 'loading',
         duration: 2000
       })
-    }, () => {
-      resolve && resolve()
     })
   },
   bindGetFilterDate() {

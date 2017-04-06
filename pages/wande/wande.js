@@ -51,8 +51,13 @@ Page({
   },
   // 生命周期
   onLoad(options) {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 2000000
+    })
     // 生命周期函数--监听页面加载
-    var that = this
+    let that = this
     // 处理sliderWidth
     wx.getSystemInfo({
       success(res) {
@@ -73,7 +78,9 @@ Page({
       new Promise((resolve) => {
         this.bindElectricDateChange(false, resolve)
       })
-    ])
+    ]).then((data) => {
+      wx.hideToast()
+    })
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
         url: '/pages/index/index'
@@ -144,6 +151,7 @@ Page({
         'addElectric.haoId': res.data.data[0] ? res.data.data[0]._id : '',
         'addElectricVD.haoId': true
       })
+      resolve && resolve()
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
@@ -151,8 +159,6 @@ Page({
         icon: 'loading',
         duration: 2000
       })
-    }, () => {
-      resolve && resolve()
     })
   },
   bindWaterDateChange(e, resolve) {
@@ -178,6 +184,7 @@ Page({
         icon: 'success',
         duration: 1000
       })
+      resolve && resolve()
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
@@ -185,8 +192,6 @@ Page({
         icon: 'loading',
         duration: 2000
       })
-    }, () => {
-      resolve && resolve()
     })
   },
   bindHouseWaterPickerChange(e) {
@@ -281,6 +286,7 @@ Page({
         icon: 'success',
         duration: 1000
       })
+      resolve && resolve()
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
@@ -288,8 +294,6 @@ Page({
         icon: 'loading',
         duration: 2000
       })
-    }, () => {
-      resolve && resolve()
     })
   },
   bindHouseElectricPickerChange(e) {
