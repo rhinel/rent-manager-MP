@@ -75,11 +75,11 @@ Page({
             haoId: that.data.id
         }, (res) => {
             let _data = res.data.data
-            _data.leaseId.addTime = that.bindGetFormatDate(res.data.data.leaseId.addTime)
-            _data.leaseId.leaserange && (res.data.data.leaseId.leaserange[0] = that.bindGetFormatDate(res.data.data.leaseId.leaserange[0]))
-            _data.leaseId.leaserange && (res.data.data.leaseId.leaserange[1] = that.bindGetFormatDate(res.data.data.leaseId.leaserange[1]))
-            _data.waterId.addTime = that.bindGetFormatDate(res.data.data.leaseId.addTime)
-            _data.electricId.addTime = that.bindGetFormatDate(res.data.data.electricId.addTime)
+            _data.leaseId.addTime = that.bindGetFormatDate(_data.leaseId.addTime)
+            _data.leaseId.leaserange && (_data.leaseId.leaserange[0] = that.bindGetFormatDate(_data.leaseId.leaserange[0]))
+            _data.leaseId.leaserange && (_data.leaseId.leaserange[1] = that.bindGetFormatDate(_data.leaseId.leaserange[1]))
+            _data.waterId.addTime = that.bindGetFormatDate(_data.waterId.addTime)
+            _data.electricId.addTime = that.bindGetFormatDate(_data.electricId.addTime)
 
             _data.waterId.result = that.bindCalResult(_data.leaseId.calWaterPrice, _data.waterId.water - (_data.calWaterId.tnew ? _data.calWaterId.tnew.water : 0))
             _data.electricId.result = that.bindCalResult(_data.leaseId.calElePrice, _data.electricId.electric - (_data.calElectricId.tnew ? _data.calElectricId.tnew.electric : 0))

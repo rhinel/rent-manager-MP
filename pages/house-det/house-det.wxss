@@ -8,7 +8,7 @@
   padding: 0.1em 0.4em;
   margin-left: 4px;
   vertical-align: top;
-  background-color: #1AAD19;
+  background-color: #576b95;
 }
 
 .house-det .weui-media-box__desc {
