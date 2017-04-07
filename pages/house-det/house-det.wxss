@@ -15,8 +15,13 @@
   -webkit-line-clamp: initial;
 }
 
-.house-det.page__bd {
-  padding-bottom: 0;
+.house-det .loadmore .weui-loadmore_line {
+  margin-top: 1.5em;
+  margin-bottom: calc(-0.25em - 10px);
+}
+
+.house-det .loadmore {
+  overflow: hidden;
 }
 
 .house-det .weui-loadmore__tips_in-line {
