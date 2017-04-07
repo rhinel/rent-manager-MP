@@ -1,29 +1,29 @@
-/**house-det.wxss**/
+/**rent.wxss**/
 
-.house-det .weui-form-preview__value {
+.rent .weui-form-preview__value {
   text-align: right;
 }
 
-.house-det .badge1 {
-  padding: 0.08em 0.4em;
+.rent .badge1 {
+  padding: 0.07em 0.4em;
   margin-left: 4px;
   vertical-align: top;
   background-color: #576b95;
 }
 
-.house-det .weui-media-box__desc {
+.rent .weui-media-box__desc {
   -webkit-line-clamp: initial;
 }
 
-.house-det.page__bd {
+.rent.page__bd {
   padding-bottom: 0;
 }
 
-.house-det .weui-loadmore__tips_in-line {
+.rent .weui-loadmore__tips_in-line {
   background-color: #f8f8f8;
 }
 
-.house-det .weui-loadmore_line {
+.rent .weui-loadmore_line {
   margin-top: 1.5em;
   margin-bottom: -10px;
 }

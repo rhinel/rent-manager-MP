@@ -1,4 +1,4 @@
-//house-det.js
+//rent.js
 let ajax = require('../../assets/utils/request.js')
 let formatDate = require('../../assets/utils/util.js').formatDate
 Page({

@@ -1,2 +1,5 @@
 
 <!--dashboard.wxml-->
+<view class="container dashboard">
+  dashboard
+</view>

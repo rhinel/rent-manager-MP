@@ -1,8 +1,8 @@
 
-<!--house-det.wxml-->
+<!--rent.wxml-->
 
 <!--基础信息-->
-<view class="weui-form-preview house-det" hidden="{{!loaded}}">
+<view class="weui-form-preview rent" hidden="{{!loaded}}">
   <view class="weui-form-preview__hd">
     <view class="weui-form-preview__label">房屋</view>
     <view class="weui-form-preview__value_in-hd">{{det.fanghao}}</view>
@@ -19,14 +19,14 @@
     <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">操作</navigator>
   </view>-->
 </view>
-<view class="page__bd house-det" hidden="{{!loaded}}">
+<view class="page__bd rent" hidden="{{!loaded}}">
   <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
     <view class="weui-loadmore__tips weui-loadmore__tips_in-line weui-loadmore__tips_in-dot"></view>
   </view>
 </view>
 
 <!--租户信息-->
-<view class="weui-panel weui-panel_access house-det" wx:if="{{det.leaseId.status == 1}}">
+<view class="weui-panel weui-panel_access rent" wx:if="{{det.leaseId.status == 1}}">
   <view class="weui-panel__hd">当前租住信息</view>
   <view class="weui-panel__bd">
     <view class="weui-media-box weui-media-box_text">
@@ -87,7 +87,7 @@
 </view>
 
 <!--水电信息-->
-<view class="weui-panel weui-panel_access house-det" hidden="{{!loaded}}">
+<view class="weui-panel weui-panel_access rent" hidden="{{!loaded}}">
   <view class="weui-panel__hd">当前水电信息</view>
   <view class="weui-panel__bd">
     <view class="weui-media-box weui-media-box_text">
