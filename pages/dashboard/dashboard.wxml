@@ -1,5 +1,19 @@
 
 <!--dashboard.wxml-->
 <view class="container dashboard page__bd">
-  dashboard
+  <view class="page__hd">
+    <view class="page__title">Rent-Manager</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-grids">
+      <block wx:for-items="{{[1,2,3,4,5,6,7,8,9]}}" wx:key="{{index}}">
+        <view class="weui-grid" hover-class="weui-grid_active">
+          <view class="weui-grid__icon">
+            {{index}}
+          </view>
+          <view class="weui-grid__label">Grid</view>
+        </view>
+      </block>
+    </view>
+  </view>
 </view>
