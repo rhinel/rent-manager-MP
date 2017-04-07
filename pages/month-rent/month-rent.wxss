@@ -19,7 +19,38 @@
   background-color: #f8f8f8;
 }
 
-.month-rent .weui-loadmore_line {
+.month-rent .loadmore .weui-loadmore_line {
   margin-top: 1.5em;
+  margin-bottom: calc(-0.25em - 10px);
+}
+
+.month-rent .loadmore {
+  overflow: hidden;
+}
+
+.month-rent .kind-list__item-bd {
+  height: 0;
+  overflow: hidden;
+  margin-top: 10px;
   margin-bottom: -10px;
+}
+
+.month-rent .kind-list__item-bd_show {
+  height: auto;
+  margin-bottom: 0;
+}
+
+.month-rent .kind-cells {
+  margin-top: 0;
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.month-rent .kind-cells_show {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
 }

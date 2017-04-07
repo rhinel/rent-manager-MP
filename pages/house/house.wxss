@@ -1,1 +1,27 @@
 /**house.wxss**/
+
+.house .weui-icon-search {
+  padding-top: 2px;
+  vertical-align: top;
+}
+
+.house .weui-search-bar__text {
+  vertical-align: top;
+}
+
+.house .weui-form-preview::before {
+  border-top: 0;
+}
+
+.house .money {
+  display: inline-block;
+  line-height: 1.2;
+  padding: 0.15em 0;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.house .weui-loadmore__tips_in-line {
+  background-color: #f8f8f8;
+}

@@ -2,283 +2,294 @@
 <!--month-rent.wxml-->
 
 <!--基础信息-->
-<view class="container month-rent page__bd" hidden="{{!loaded || !det._id}}">
+<view class="container month-rent page__bd" hidden="{{!loaded || !detList.length}}">
   <view class="weui-form-preview">
     <view class="weui-form-preview__hd">
       <view class="weui-form-preview__label">房屋</view>
-      <view class="weui-form-preview__value_in-hd">{{det.fanghao}}</view>
+      <view class="weui-form-preview__value_in-hd">{{detList[0].fanghao}}</view>
     </view>
     <view class="weui-form-preview__bd">
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">说明</view>
-        <view class="weui-form-preview__value">{{det.detail || '无'}}</view>
-      </view>
-    </view>
-
-    <!--<view class="weui-form-preview__ft">
-    <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">辅助操作</navigator>
-    <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">操作</navigator>
-  </view>-->
-  </view>
-
-  <!--租户信息-->
-  <view class="weui-panel weui-panel_access">
-    <view class="weui-panel__hd">租住信息</view>
-    <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">姓名</view>
-            <view class="weui-form-preview__value">{{det.lease.name || '--'}}</view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">电话</view>
-            <view class="weui-form-preview__value">{{det.lease.call || '--'}}</view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">租金</view>
-            <view class="weui-form-preview__value">￥{{det.lease.rent || '0'}}元</view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">押金</view>
-            <view class="weui-form-preview__value">￥{{det.lease.deposit || '0'}}元</view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">信息</view>
-            <view class="weui-form-preview__value">
-              <view>
-                每月{{det.lease.payDay || '0'}}日
-                <view class="weui-badge badge1">{{payTypeVal[det.lease.payType]}}</view>
-              </view>
-              <view>
-                {{det.lease.addTime}}入住
-              </view>
-              <view>
-                {{det.lease.leaserange[0]}} ~ {{det.lease.leaserange[1]}}
-              </view>
-              <view wx:if="{{det.lease.remark}}">
-                {{det.lease.remark}}
-              </view>
-            </view>
-          </view>
-        </view>
+        <view class="weui-form-preview__value">{{detList[0].detail || '无'}}</view>
       </view>
     </view>
   </view>
+  <block wx:for="{{detList}}" wx:for-item="det" wx:key="_id">
+    <view class="loadmore" data-index="{{index}}" bindtap="bindToggle">
+      <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{det.addTime}}租单</view>
+      </view>
+    </view>
+    <view class="kind-list__item-bd {{det.show ? 'kind-list__item-bd_show' : ''}}">
+      <view class="kind-cells {{det.show ? 'kind-cells_show' : ''}}">
 
-  <!--水电信息-->
-  <view class="weui-panel weui-panel_access">
-    <view class="weui-panel__hd">水电信息</view>
-    <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">本次水表</view>
-            <view class="weui-form-preview__value">
-              <view>
-                {{det.calWater.tnew.water || '0'}}吨
-              </view>
-              <view>
-                {{det.calWater.tnew.addTime}}
-              </view>
-              <view wx:if="{{det.calWater.tnew.remark}}">
-                {{det.calWater.tnew.remark}}
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">上次水表</view>
-            <view class="weui-form-preview__value">
-              <view>
-                {{det.calWater.old.water || '0'}}吨
-              </view>
-              <view>
-                {{det.calWater.old.addTime}}
-              </view>
-              <view wx:if="{{det.calWater.old.remark}}">
-                {{det.calWater.old.remark}}
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">计费方式</view>
-            <view class="weui-form-preview__value">
-              <view>
-                低消：{{det.calWater.calWater.minPrice || '0'}}吨
-              </view>
-              <view wx:if="{{det.calWater.calWater.calType == 'single'}}">
-                单价：￥{{det.calWater.calWater.singlePrice}}元/吨
-              </view>
-              <view wx:else>
-                <view wx:for="{{det.calWater.calWater.stepPrice}}" wx:key="_id">
-                  {{item.step}}吨及以下￥{{item.price}}元/吨
+        <!--租户信息-->
+        <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__hd">租住信息</view>
+          <view class="weui-panel__bd">
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">姓名</view>
+                  <view class="weui-form-preview__value">{{det.lease.name || '--'}}</view>
                 </view>
-                超出按最后阶梯计算
               </view>
             </view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">水费小计</view>
-            <view class="weui-form-preview__value">
-              <view>
-                ￥{{det.calWater.calWaterResult || '0'}}元
-                <view class="weui-badge badge1">{{det.calWater.fix ? '修' : '计'}}</view>
-              </view>
-              <view>
-                {{det.calWater.addTime}}
-              </view>
-              <view wx:if="{{det.calWater.remark}}">
-                {{det.calWater.remark}}
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">本次电表</view>
-            <view class="weui-form-preview__value">
-              <view>
-                {{det.calElectric.tnew.electric || '0'}}度
-              </view>
-              <view>
-                {{det.calElectric.tnew.addTime}}
-              </view>
-              <view wx:if="{{det.calElectric.tnew.remark}}">
-                {{det.calElectric.tnew.remark}}
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">上次电表</view>
-            <view class="weui-form-preview__value">
-              <view>
-                {{det.calElectric.old.electric || '0'}}度
-              </view>
-              <view>
-                {{det.calElectric.old.addTime}}
-              </view>
-              <view wx:if="{{det.calElectric.old.remark}}">
-                {{det.calElectric.old.remark}}
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">计费方式</view>
-            <view class="weui-form-preview__value">
-              <view>
-                低消：{{det.calElectric.calElectric.minPrice || '0'}}度
-              </view>
-              <view wx:if="{{det.calElectric.calElectric.calType == 'single'}}">
-                单价：￥{{det.calElectric.calElectric.singlePrice}}元/度
-              </view>
-              <view wx:else>
-                <view wx:for="{{det.calElectric.calElectric.stepPrice}}" wx:key="_id">
-                  {{item.step}}度及以下￥{{item.price}}元/度
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">电话</view>
+                  <view class="weui-form-preview__value">{{det.lease.call || '--'}}</view>
                 </view>
-                超出按最后阶梯计算
+              </view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">租金</view>
+                  <view class="weui-form-preview__value">￥{{det.lease.rent || '0'}}元</view>
+                </view>
+              </view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">押金</view>
+                  <view class="weui-form-preview__value">￥{{det.lease.deposit || '0'}}元</view>
+                </view>
+              </view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">信息</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      每月{{det.lease.payDay || '0'}}日
+                      <view class="weui-badge badge1">{{payTypeVal[det.lease.payType]}}</view>
+                    </view>
+                    <view>
+                      {{det.lease.addTime}}入住
+                    </view>
+                    <view>
+                      {{det.lease.leaserange[0]}} ~ {{det.lease.leaserange[1]}}
+                    </view>
+                    <view wx:if="{{det.lease.remark}}">
+                      {{det.lease.remark}}
+                    </view>
+                  </view>
+                </view>
               </view>
             </view>
           </view>
         </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">电费小计</view>
-            <view class="weui-form-preview__value">
-              <view>
-                ￥{{det.calElectric.calElectricResult || '0'}}元
-                <view class="weui-badge badge1">{{det.calElectric.fix ? '修' : '计'}}</view>
+
+        <!--水电信息-->
+        <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__hd">水电信息</view>
+          <view class="weui-panel__bd">
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">本次水表</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      {{det.calWater.tnew.water || '0'}}吨
+                    </view>
+                    <view>
+                      {{det.calWater.tnew.addTime}}
+                    </view>
+                    <view wx:if="{{det.calWater.tnew.remark}}">
+                      {{det.calWater.tnew.remark}}
+                    </view>
+                  </view>
+                </view>
               </view>
-              <view>
-                {{det.calElectric.addTime}}
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">上次水表</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      {{det.calWater.old.water || '0'}}吨
+                    </view>
+                    <view>
+                      {{det.calWater.old.addTime}}
+                    </view>
+                    <view wx:if="{{det.calWater.old.remark}}">
+                      {{det.calWater.old.remark}}
+                    </view>
+                  </view>
+                </view>
               </view>
-              <view wx:if="{{det.calElectric.remark}}">
-                {{det.calElectric.remark}}
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">计费方式</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      低消：{{det.calWater.calWater.minPrice || '0'}}吨
+                    </view>
+                    <view wx:if="{{det.calWater.calWater.calType == 'single'}}">
+                      单价：￥{{det.calWater.calWater.singlePrice}}元/吨
+                    </view>
+                    <view wx:else>
+                      <view wx:for="{{det.calWater.calWater.stepPrice}}" wx:key="_id">
+                        {{item.step}}吨及以下￥{{item.price}}元/吨
+                      </view>
+                      超出按最后阶梯计算
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">水费小计</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      ￥{{det.calWater.calWaterResult || '0'}}元
+                      <view class="weui-badge badge1">{{det.calWater.fix ? '修' : '计'}}</view>
+                    </view>
+                    <view>
+                      {{det.calWater.addTime}}
+                    </view>
+                    <view wx:if="{{det.calWater.remark}}">
+                      {{det.calWater.remark}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">本次电表</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      {{det.calElectric.tnew.electric || '0'}}度
+                    </view>
+                    <view>
+                      {{det.calElectric.tnew.addTime}}
+                    </view>
+                    <view wx:if="{{det.calElectric.tnew.remark}}">
+                      {{det.calElectric.tnew.remark}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">上次电表</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      {{det.calElectric.old.electric || '0'}}度
+                    </view>
+                    <view>
+                      {{det.calElectric.old.addTime}}
+                    </view>
+                    <view wx:if="{{det.calElectric.old.remark}}">
+                      {{det.calElectric.old.remark}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">计费方式</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      低消：{{det.calElectric.calElectric.minPrice || '0'}}度
+                    </view>
+                    <view wx:if="{{det.calElectric.calElectric.calType == 'single'}}">
+                      单价：￥{{det.calElectric.calElectric.singlePrice}}元/度
+                    </view>
+                    <view wx:else>
+                      <view wx:for="{{det.calElectric.calElectric.stepPrice}}" wx:key="_id">
+                        {{item.step}}度及以下￥{{item.price}}元/度
+                      </view>
+                      超出按最后阶梯计算
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__desc">
+                <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__label">电费小计</view>
+                  <view class="weui-form-preview__value">
+                    <view>
+                      ￥{{det.calElectric.calElectricResult || '0'}}元
+                      <view class="weui-badge badge1">{{det.calElectric.fix ? '修' : '计'}}</view>
+                    </view>
+                    <view>
+                      {{det.calElectric.addTime}}
+                    </view>
+                    <view wx:if="{{det.calElectric.remark}}">
+                      {{det.calElectric.remark}}
+                    </view>
+                  </view>
+                </view>
               </view>
             </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
 
-  <!--水电信息-->
-  <view class="weui-panel weui-panel_access">
-    <view class="weui-panel__hd">计租信息</view>
-    <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">合计</view>
-            <view class="weui-form-preview__value">
-              <view>￥{{det.calRentResult || '0'}}元
-                <view class="weui-badge badge1">{{det.fix ? '修' : '计'}}</view>
-              </view>
-              <view>
-                {{det.addTime}}
-              </view>
-              <view wx:if="{{det.remark}}">
-                {{det.remark}}
+    <!--计租信息-->
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">计租信息</view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__desc">
+            <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">合计</view>
+              <view class="weui-form-preview__value">
+                <view>￥{{det.calRentResult || '0'}}元
+                  <view class="weui-badge badge1">{{det.fix ? '修' : '计'}}</view>
+                </view>
+                <view>
+                  {{det.addTime}}
+                </view>
+                <view wx:if="{{det.remark}}">
+                  {{det.remark}}
+                </view>
               </view>
             </view>
           </view>
         </view>
-      </view>
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__desc">
-          <view class="weui-form-preview__item">
-            <view class="weui-form-preview__label">状态</view>
-            <view class="weui-form-preview__value">
-              <view class="weui-badge" wx:if="{{det.type.type.length == 0}}">新建</view>
-              <block wx:else>
-                <view wx:for="{{det.type.type}}" wx:key="*this" wx:for-item="type">
-                  <view class="weui-badge badge1" style="margin-right: 5px;background-color: #1AAD19;">{{typesVal[type]}}</view>
-                  {{det.type.typeTime[type]}}
-                </view>
-              </block>
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__desc">
+            <view class="weui-form-preview__item">
+              <view class="weui-form-preview__label">状态</view>
+              <view class="weui-form-preview__value">
+                <view class="weui-badge" wx:if="{{det.type.type.length == 0}}">新建</view>
+                <block wx:else>
+                  <view wx:for="{{det.type.type}}" wx:key="*this" wx:for-item="type">
+                    <view class="weui-badge badge1" style="margin-right: 5px;background-color: #1AAD19;">{{typesVal[type]}}</view>
+                    {{det.type.typeTime[type]}}
+                  </view>
+                </block>
+              </view>
             </view>
           </view>
         </view>
       </view>
     </view>
+  </block>
+</view>
+<view class="page__bd month-rent" wx:if="{{!detList.length}}">
+  <view class="weui-loadmore weui-loadmore_line">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
   </view>
 </view>
