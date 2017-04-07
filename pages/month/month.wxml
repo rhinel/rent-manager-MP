@@ -1,6 +1,6 @@
 
-<!--house.wxml-->
-<view class="container house">
+<!--month.wxml-->
+<view class="container month">
 
   <!--搜索-->
   <view class="weui-search-bar">

@@ -36,7 +36,7 @@ Page({
     })
     ajax('/inner/auth/check', {}, (res) => {
       wx.switchTab({
-        url: '/pages/wande/wande'
+        url: '/pages/dashboard/dashboard'
       })
     }, (res) => { })
   },

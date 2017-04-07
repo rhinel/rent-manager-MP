@@ -1,4 +1,4 @@
-//house.js
+//month.js
 let ajax = require('../../assets/utils/request.js')
 Page({
   data: {
@@ -146,7 +146,7 @@ Page({
   },
   bindGoToDet(e) {
     wx.navigateTo({
-      url: '/pages/house-det/house-det?id=' + e.currentTarget.dataset.id
+      url: '/pages/rent/rent?id=' + e.currentTarget.dataset.id
     })
   }
 })

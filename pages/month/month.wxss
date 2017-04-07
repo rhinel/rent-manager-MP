@@ -1,19 +1,19 @@
-/**house.wxss**/
+/**month.wxss**/
 
-.house .weui-icon-search {
+.month .weui-icon-search {
   padding-top: 2px;
   vertical-align: top;
 }
 
-.house .weui-search-bar__text {
+.month .weui-search-bar__text {
   vertical-align: top;
 }
 
-.house .weui-form-preview::before {
+.month .weui-form-preview::before {
   border-top: 0;
 }
 
-.house .money {
+.month .money {
   display: inline-block;
   line-height: 1.2;
   padding: 0.15em 0;
@@ -21,6 +21,6 @@
   font-size: 12px;
 }
 
-.house .weui-loadmore__tips_in-line {
+.month .weui-loadmore__tips_in-line {
   background-color: #f8f8f8;
 }
