@@ -1,4 +1,4 @@
-// dashboard.js
+// house.js
 let ajax = require('../../assets/utils/request.js')
 Page({
     data: {

@@ -73,10 +73,52 @@
                       <input class="weui-input" placeholder="Remark" bindinput="bindKeyInputWaterRemark" />
                     </view>
                   </view>
+                  <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">小计</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      {{!addWater.water ? 0 : (addWater.water - (houseList[addWaterSelect.haoIndex].calWaters[0].tnew.water || 0))}}吨
+                    </view>
+                  </view>
                 </view>
               </view>
-              <view class="button-sp-area">
-                <button class="weui-btn" type="primary" bindtap="bindAddWater" formType="reset">抄水表</button>
+              <view class="weui-cells weui-cells_after-title">
+                <view class="button-sp-area">
+                  <button class="weui-btn" type="primary" bindtap="bindAddWater" formType="reset">抄水表</button>
+                </view>
+              </view>
+              <view class="weui-panel__hd" hidden="{{!houseList[addWaterSelect.haoIndex].calWaters.length}}">
+                <view class="weui-cell fix-cell">
+                  <view class="weui-cell__hd">
+                    <view class="weui-label">上次抄表时间</view>
+                  </view>
+                  <view class="weui-cell__bd">今次 - 上次</view>
+                  <view class="weui-cell__bd" style="text-align: right;">= 小计</view>
+                </view>
+              </view>
+              <view class="weui-panel__bd" hidden="{{!houseList[addWaterSelect.haoIndex].calWaters.length}}">
+                <view class="weui-cells weui-cells_after-title">
+                  <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">
+                        <view wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}" wx:key="_id">
+                          {{item.tnew.addTime}}
+                        </view>
+                      </view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <view wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}" wx:key="_id">
+                        {{item.tnew.water}} - {{item.old.water}}
+                      </view>
+                    </view>
+                    <view class="weui-cell__bd" style="text-align: right;">
+                      <view wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}" wx:key="_id">
+                        = {{item.gap}}吨
+                      </view>
+                    </view>
+                  </view>
+                </view>
               </view>
             </form>
           </view>
@@ -173,10 +215,52 @@
                       <input class="weui-input" placeholder="Remark" bindinput="bindKeyInputElectricRemark" />
                     </view>
                   </view>
+                  <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">小计</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      {{!addElectric.electric ? 0 : (addElectric.electric - (houseList[addElectricSelect.haoIndex].calElectrics[0].tnew.electric || 0))}}吨
+                    </view>
+                  </view>
                 </view>
               </view>
-              <view class="button-sp-area">
-                <button class="weui-btn" type="primary" bindtap="bindAddElectric" formType="reset">抄电表</button>
+              <view class="weui-cells weui-cells_after-title">
+                <view class="button-sp-area">
+                  <button class="weui-btn" type="primary" bindtap="bindAddElectric" formType="reset">抄电表</button>
+                </view>
+              </view>
+              <view class="weui-panel__hd" hidden="{{!houseList[addElectricSelect.haoIndex].calElectrics.length}}">
+                <view class="weui-cell fix-cell">
+                  <view class="weui-cell__hd">
+                    <view class="weui-label">上次抄表时间</view>
+                  </view>
+                  <view class="weui-cell__bd">今次 - 上次</view>
+                  <view class="weui-cell__bd" style="text-align: right;">= 小计</view>
+                </view>
+              </view>
+              <view class="weui-panel__bd" hidden="{{!houseList[addElectricSelect.haoIndex].calElectrics.length}}">
+                <view class="weui-cells weui-cells_after-title">
+                  <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                      <view class="weui-label">
+                        <view wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}" wx:key="_id">
+                          {{item.tnew.addTime}}
+                        </view>
+                      </view>
+                    </view>
+                    <view class="weui-cell__bd">
+                      <view wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}" wx:key="_id">
+                        {{item.tnew.electric}} - {{item.old.electric}}
+                      </view>
+                    </view>
+                    <view class="weui-cell__bd" style="text-align: right;">
+                      <view wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}" wx:key="_id">
+                        = {{item.gap}}度
+                      </view>
+                    </view>
+                  </view>
+                </view>
               </view>
             </form>
           </view>

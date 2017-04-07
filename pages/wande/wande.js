@@ -138,10 +138,7 @@ Page({
   },
   bindGetHouse(resolve) {
     let that = this
-    ajax('/inner/house/list', {}, (res) => {
-      res.data.data.forEach((i) => {
-        i.fang && !i.fanghao && (i.fanghao = i.fang + i.hao)
-      })
+    ajax('/inner/house/listWithCal', {}, (res) => {
       that.setData({
         houseList: res.data.data,
         'addWaterSelect.haoIndex': 0,

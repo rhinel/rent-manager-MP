@@ -5,7 +5,8 @@
     "pages/wande/wande",
     "pages/month/month",
     "pages/rent/rent",
-    "pages/dashboard/dashboard"
+    "pages/dashboard/dashboard",
+    "pages/house/house"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -23,19 +24,25 @@
     "list": [
       {
         "pagePath": "pages/dashboard/dashboard",
-        "text": "主控面板",
+        "text": "主控",
         "iconPath": "assets/icon-das.png",
         "selectedIconPath": "assets/icon-das-select.png"
       },
       {
         "pagePath": "pages/wande/wande",
-        "text": "水电管理",
+        "text": "水电",
         "iconPath": "assets/icon-wande.png",
         "selectedIconPath": "assets/icon-wande-select.png"
       },
       {
         "pagePath": "pages/month/month",
-        "text": "最新月度",
+        "text": "收租",
+        "iconPath": "assets/icon-rent.png",
+        "selectedIconPath": "assets/icon-rent-select.png"
+      },
+      {
+        "pagePath": "pages/house/house",
+        "text": "房屋",
         "iconPath": "assets/icon-house.png",
         "selectedIconPath": "assets/icon-house-select.png"
       }

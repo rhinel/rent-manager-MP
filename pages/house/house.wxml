@@ -1,0 +1,5 @@
+
+<!--house.wxml-->
+<view class="container house">
+  house
+</view>

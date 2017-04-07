@@ -91,7 +91,7 @@ Page({
       wx.setStorageSync('token', res.data.data)
       setTimeout(() => {
         wx.switchTab({
-          url: '/pages/wande/wande'
+          url: '/pages/dashboard/dashboard'
         })
       }, 1000)
     }, (res) => {
