@@ -1,1 +1,25 @@
 /**month-rent.wxss**/
+
+.month-rent .weui-form-preview__value {
+  text-align: right;
+}
+
+.month-rent .badge1 {
+  padding: 0.05em 0.4em;
+  margin-left: 4px;
+  vertical-align: top;
+  background-color: #576b95;
+}
+
+.month-rent .weui-media-box__desc {
+  -webkit-line-clamp: initial;
+}
+
+.month-rent .weui-loadmore__tips_in-line {
+  background-color: #f8f8f8;
+}
+
+.month-rent .weui-loadmore_line {
+  margin-top: 1.5em;
+  margin-bottom: -10px;
+}

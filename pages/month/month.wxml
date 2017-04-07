@@ -1,6 +1,6 @@
 
 <!--month.wxml-->
-<view class="container month">
+<view class="container month page__bd">
 
   <!--搜索-->
   <view class="weui-search-bar">

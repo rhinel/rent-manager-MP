@@ -1,5 +1,5 @@
 
 <!--house.wxml-->
-<view class="container house">
+<view class="container house page__bd">
   house
 </view>

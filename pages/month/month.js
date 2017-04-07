@@ -145,8 +145,9 @@ Page({
     this.bindGetFilterDate()
   },
   bindGoToDet(e) {
+    let that = this
     wx.navigateTo({
-      url: '/pages/house-det/house-det?id=' + e.currentTarget.dataset.id
+      url: '/pages/month-rent/month-rent?haoId=' + e.currentTarget.dataset.id + '&monthId=' + that.data.month._id
     })
   }
 })
