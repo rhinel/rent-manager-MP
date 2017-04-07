@@ -1,4 +1,4 @@
-//rent.js
+//house-det.js
 let ajax = require('../../assets/utils/request.js')
 let formatDate = require('../../assets/utils/util.js').formatDate
 Page({
@@ -71,7 +71,7 @@ Page({
     },
     bindGetHouseDet(resolve) {
         let that = this
-        ajax('/inner/rent/detByHao', {
+        ajax('/inner/house/detByHao', {
             haoId: that.data.id
         }, (res) => {
             let _data = res.data.data

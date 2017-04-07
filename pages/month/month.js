@@ -146,7 +146,7 @@ Page({
   },
   bindGoToDet(e) {
     wx.navigateTo({
-      url: '/pages/rent/rent?id=' + e.currentTarget.dataset.id
+      url: '/pages/house-det/house-det?id=' + e.currentTarget.dataset.id
     })
   }
 })

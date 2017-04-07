@@ -2,11 +2,11 @@
   "debug": true,
   "pages": [
     "pages/index/index",
+    "pages/dashboard/dashboard",
     "pages/wande/wande",
     "pages/month/month",
-    "pages/rent/rent",
-    "pages/dashboard/dashboard",
-    "pages/house/house"
+    "pages/house/house",
+    "pages/house-det/house-det"
   ],
   "window": {
     "backgroundTextStyle": "dark",
