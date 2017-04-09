@@ -1,1 +1,8 @@
 /**dashboard.wxss**/
+
+.dashboard .weui-grid__icon {
+  text-align: center;
+  width: auto;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
