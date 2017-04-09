@@ -43,7 +43,7 @@
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <input type="digit" class="weui-input" placeholder="Number" bindinput="bindKeyInputWater" />
+                    <input type="digit" class="weui-input" value="{{addWater.water}}" placeholder="Number" bindinput="bindKeyInputWater" />
                   </view>
                   <view class="weui-cell__ft" wx:if="{{!addWaterVD.water}}">
                     <icon type="warn" size="23" color="#E64340"></icon>
@@ -69,7 +69,7 @@
                     <view class="weui-label">备注</view>
                   </view>
                   <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="Remark" bindinput="bindKeyInputWaterRemark" />
+                    <input class="weui-input" value="{{addWater.remark}}" placeholder="Remark" bindinput="bindKeyInputWaterRemark" />
                   </view>
                 </view>
                 <view class="weui-cell">
@@ -84,7 +84,7 @@
             </view>
             <view class="weui-cells weui-cells_after-title">
               <view class="button-sp-area">
-                <button class="weui-btn" type="primary" bindtap="bindAddWater" formType="reset">抄水表</button>
+                <button class="weui-btn" type="primary" bindtap="bindAddWater">抄水表</button>
               </view>
             </view>
             <view class="weui-panel__hd" hidden="{{!houseList[addWaterSelect.haoIndex].calWaters.length}}">
@@ -185,7 +185,7 @@
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <input type="digit" class="weui-input" placeholder="Number" bindinput="bindKeyInputElectric" />
+                    <input type="digit" class="weui-input" value="{{addElectric.electric}}" placeholder="Number" bindinput="bindKeyInputElectric" />
                   </view>
                   <view class="weui-cell__ft" wx:if="{{!addElectricVD.electric}}">
                     <icon type="warn" size="23" color="#E64340"></icon>
@@ -211,7 +211,7 @@
                     <view class="weui-label">备注</view>
                   </view>
                   <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="Remark" bindinput="bindKeyInputElectricRemark" />
+                    <input class="weui-input" value="{{addElectric.remark}}" placeholder="Remark" bindinput="bindKeyInputElectricRemark" />
                   </view>
                 </view>
                 <view class="weui-cell">
@@ -226,7 +226,7 @@
             </view>
             <view class="weui-cells weui-cells_after-title">
               <view class="button-sp-area">
-                <button class="weui-btn" type="primary" bindtap="bindAddElectric" formType="reset">抄电表</button>
+                <button class="weui-btn" type="primary" bindtap="bindAddElectric">抄电表</button>
               </view>
             </view>
             <view class="weui-panel__hd" hidden="{{!houseList[addElectricSelect.haoIndex].calElectrics.length}}">
