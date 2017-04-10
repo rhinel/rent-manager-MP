@@ -5,7 +5,11 @@ Page({
         count: {
             houseCount: 0,
             rentList1Count: 0,
-            rentList3Count: 0
+            rentList1CountMoney: 0,
+            rentList3Count: 0,
+            rentList3CountMoney: 0,
+            rentList1isToday: 0,
+            rentList3isToday: 0
         }
     },
     onLoad(options) {
@@ -17,6 +21,12 @@ Page({
         Promise.all([
             new Promise((resolve) => {
                 this.bindGetCount(resolve)
+            }),
+            new Promise((resolve) => {
+                this.bindGetCountType(1, resolve)
+            }),
+            new Promise((resolve) => {
+                this.bindGetCountType(3, resolve)
             })
         ]).then((data) => {
             wx.hideToast()
@@ -49,6 +59,12 @@ Page({
         Promise.all([
             new Promise((resolve) => {
                 this.bindGetCount(resolve)
+            }),
+            new Promise((resolve) => {
+                this.bindGetCountType(1, resolve)
+            }),
+            new Promise((resolve) => {
+                this.bindGetCountType(3, resolve)
             })
         ]).then((data) => {
             wx.stopPullDownRefresh()
@@ -70,6 +86,26 @@ Page({
             that.setData({
                 count: res.data.data
             })
+            resolve && resolve()
+        }, (res) => {
+            wx.showToast({
+                title: String(res.data.msg),
+                image: '../../assets/error.png',
+                icon: 'loading',
+                duration: 2000
+            })
+        })
+    },
+    bindGetCountType(typ, resolve) {
+        let that = this
+        ajax('/inner/dash/waitingListCount', {
+            type: typ || 1
+        }, (res) => {
+            let setType = {}
+            setType['count.rentList' + (typ || 1) + 'Count'] = res.data.data.count
+            setType['count.rentList' + (typ || 1) + 'CountMoney'] = res.data.data.countMoney
+            setType['count.rentList' + (typ || 1) + 'isToday'] = res.data.data.isToday
+            that.setData(setType)
             resolve && resolve()
         }, (res) => {
             wx.showToast({

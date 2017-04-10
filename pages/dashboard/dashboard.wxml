@@ -24,6 +24,24 @@
         </view>
         <view class="weui-grid__label">待交房东</view>
       </view>
+      <view class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">
+          {{count.rentList1isToday || '0'}}户
+        </view>
+        <view class="weui-grid__label">今日待收</view>
+      </view>
+      <view class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">
+          {{count.rentList1CountMoney || '0'}}元
+        </view>
+        <view class="weui-grid__label">今日待收租金</view>
+      </view>
+      <view class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">
+          {{count.rentList3CountMoney || '0'}}元
+        </view>
+        <view class="weui-grid__label">今日待交房东</view>
+      </view>
     </view>
   </view>
 </view>
