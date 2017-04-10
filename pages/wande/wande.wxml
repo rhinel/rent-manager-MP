@@ -219,7 +219,7 @@
                     <view class="weui-label">小计</view>
                   </view>
                   <view class="weui-cell__bd">
-                    {{!addElectric.electric ? 0 : (addElectric.electric - (houseList[addElectricSelect.haoIndex].calElectrics[0].tnew.electric || 0))}}吨
+                    {{!addElectric.electric ? 0 : (addElectric.electric - (houseList[addElectricSelect.haoIndex].calElectrics[0].tnew.electric || 0))}}度
                   </view>
                 </view>
               </view>
