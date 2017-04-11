@@ -6,3 +6,10 @@
   font-size: 24px;
   margin-bottom: 20px;
 }
+
+.dashboard .weui-grid {
+  width: 50%;
+}
+.dashboard .wg25{
+  width: 25%;
+}
