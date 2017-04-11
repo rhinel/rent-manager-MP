@@ -8,7 +8,7 @@ Page({
         monthId: '',
         detList: {},
         typesVal: ['', '已交', '给单', '房东'],
-        payTypeVal: ['微信', '支付宝', '银行转账', '现金']
+        payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他']
     },
     onLoad(options) {
         wx.showToast({
@@ -95,8 +95,10 @@ Page({
                     _data.calElectric.old.addTime = that.bindGetFormatDate(_data.calElectric.old.addTime)
                     // 计租时间
                     _data.addTime = that.bindGetFormatDate(_data.addTime)
-                    for (var i in _data.type.typeTime) {
-                        _data.type.typeTime[i] = that.bindGetFormatDate(_data.type.typeTime[i])
+                    if (_data.type) {
+                        for (var i in _data.type.typeTime) {
+                            _data.type.typeTime[i] = that.bindGetFormatDate(_data.type.typeTime[i])
+                        }
                     }
                     _data.show = false
                 }

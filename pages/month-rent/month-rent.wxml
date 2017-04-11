@@ -273,7 +273,7 @@
             <view class="weui-form-preview__item">
               <view class="weui-form-preview__label">状态</view>
               <view class="weui-form-preview__value">
-                <view class="weui-badge" wx:if="{{det.type.type.length == 0}}">新建</view>
+                <view class="weui-badge" wx:if="{{!det.type || det.type.type.length == 0}}">新建</view>
                 <block wx:else>
                   <view wx:for="{{det.type.type}}" wx:key="*this" wx:for-item="type">
                     <view class="weui-badge badge1" style="margin-right: 5px;background-color: #1AAD19;">{{typesVal[type]}}</view>
