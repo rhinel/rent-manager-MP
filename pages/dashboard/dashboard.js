@@ -6,14 +6,14 @@ Page({
             houseCount: 0,
             leaseEmpty: 0,
             rentList1Count: 0,
-            rentList1CountMoney: 0,
+            rentList1isTodayCountMoney: 0,
             rentList3Count: 0,
-            rentList3CountMoney: 0,
+            rentList3isTodayCountMoney: 0,
             rentList3okCount: 0,
             rentList3okCountMoney: 0,
-            rentList1isToday: 0,
-            rentList3isToday: 0,
-            rentList3okisToday: 0
+            rentList1isTodayCount: 0,
+            rentList3isTodayCount: 0,
+            rentList3okisTodayCount: 0
         },
         newestMonth: ''
     },
@@ -115,8 +115,8 @@ Page({
         }, (res) => {
             let setType = {}
             setType['count.rentList' + (typ || 1) + 'Count'] = res.data.data.count
-            setType['count.rentList' + (typ || 1) + 'CountMoney'] = res.data.data.countMoney
-            setType['count.rentList' + (typ || 1) + 'isToday'] = res.data.data.isToday
+            setType['count.rentList' + (typ || 1) + 'isTodayCountMoney'] = res.data.data.isTodayCountMoney
+            setType['count.rentList' + (typ || 1) + 'isTodayCount'] = res.data.data.isTodayCount
             that.setData(setType)
             resolve && resolve()
         }, (res) => {
@@ -136,7 +136,7 @@ Page({
             let setType = {}
             setType['count.rentList' + (typ || 3) + 'okCount'] = res.data.data.count
             setType['count.rentList' + (typ || 3) + 'okCountMoney'] = res.data.data.countMoney
-            setType['count.rentList' + (typ || 3) + 'okisToday'] = res.data.data.isToday
+            setType['count.rentList' + (typ || 3) + 'okisTodayCount'] = res.data.data.isTodayCount
             setType.newestMonth = res.data.data.month
             that.setData(setType)
             resolve && resolve()
@@ -148,5 +148,22 @@ Page({
                 duration: 2000
             })
         })
+    },
+    bindGoPage(e) {
+        if (e.currentTarget.dataset.type == 'tab') {
+            wx.switchTab({
+                url: e.currentTarget.dataset.url
+            })
+        } else if (e.currentTarget.dataset.type == 'page') {
+            wx.navigateTo({
+                url: '/pages/rent-filter/rent-filter?ajax=' + e.currentTarget.dataset.ajax + '&ajaxType=' + e.currentTarget.dataset.ajaxtype + '&ajaxToday=' + e.currentTarget.dataset.ajaxtoday
+            })
+        } else if (e.currentTarget.dataset.type == 'house') {
+            wx.navigateTo({
+                url: '/pages/house-filter/house-filter?ajax=' + e.currentTarget.dataset.ajax
+            })
+        } else {
+            return false
+        }
     }
 })

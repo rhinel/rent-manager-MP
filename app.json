@@ -3,6 +3,8 @@
   "pages": [
     "pages/index/index",
     "pages/dashboard/dashboard",
+    "pages/rent-filter/rent-filter",
+    "pages/house-filter/house-filter",
     "pages/wande/wande",
     "pages/month/month",
     "pages/month-rent/month-rent",

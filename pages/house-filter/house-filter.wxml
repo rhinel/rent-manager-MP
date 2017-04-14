@@ -1,0 +1,44 @@
+
+<!--house-filter.wxml-->
+<view class="container house-filter page__bd">
+
+  <!--搜索-->
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{filter}}" focus="{{filterShowed}}" bindinput="bindGetFilter" />
+        <view class="weui-icon-clear" wx:if="{{filter.length > 0}}" bindtap="bindGetClearFilter">
+          <icon type="clear" size="14"></icon>
+        </view>
+      </view>
+      <label class="weui-search-bar__label" hidden="{{filterShowed}}" bindtap="bindGetShowFilter">
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="weui-search-bar__text">搜索</view>
+      </label>
+    </view>
+    <view class="weui-search-bar__cancel-btn" hidden="{{!filterShowed}}" bindtap="bindGetHideFilter">取消</view>
+  </view>
+
+  <!--列表-->
+  <view class="weui-panel" wx:if="{{houseDateFiltered.length}}">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_text" wx:for="{{houseDateFiltered}}" wx:key="_id" data-id="{{item._id}}" bindtap="bindGoToDet">
+        <view class="weui-media-box__title weui-media-box__title_in-text">{{item.fang + item.hao}}</view>
+        <view class="weui-media-box__desc weui-cell__ft_in-access">
+
+          <!--租金-->
+          <view class="money" style="margin-left: 0;">￥{{item.leaseId.rent || 0}}元</view>
+
+          <!--没有租住为空置-->
+          <view class="weui-badge" style="background-color: #888; margin-left: 5px;">空置</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd" wx:if="{{!houseDateFiltered.length}}">
+    <view class="weui-loadmore weui-loadmore_line">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+  </view>
+</view>

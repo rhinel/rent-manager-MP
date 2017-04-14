@@ -1,0 +1,26 @@
+/**rent-filter.wxss**/
+
+.rent-filter .weui-icon-search {
+  padding-top: 2px;
+  vertical-align: top;
+}
+
+.rent-filter .weui-search-bar__text {
+  vertical-align: top;
+}
+
+.rent-filter .weui-form-preview::before {
+  border-top: 0;
+}
+
+.rent-filter .money {
+  display: inline-block;
+  line-height: 1.2;
+  padding: 0.15em 0;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+.rent-filter .weui-loadmore__tips_in-line {
+  background-color: #f8f8f8;
+}
