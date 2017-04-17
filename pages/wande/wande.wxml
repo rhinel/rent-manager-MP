@@ -98,7 +98,7 @@
             </view>
             <view class="weui-panel__bd" hidden="{{!houseList[addWaterSelect.haoIndex].calWaters.length}}">
               <view class="weui-cells weui-cells_after-title">
-                <view class="weui-cell">
+                <view class="weui-cell mini_bd">
                   <view class="weui-cell__hd">
                     <view class="weui-label">
                       <view wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}" wx:key="_id">
@@ -240,7 +240,7 @@
             </view>
             <view class="weui-panel__bd" hidden="{{!houseList[addElectricSelect.haoIndex].calElectrics.length}}">
               <view class="weui-cells weui-cells_after-title">
-                <view class="weui-cell">
+                <view class="weui-cell mini_bd">
                   <view class="weui-cell__hd">
                     <view class="weui-label">
                       <view wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}" wx:key="_id">

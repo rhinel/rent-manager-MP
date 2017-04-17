@@ -36,3 +36,7 @@
 .wande .fix-cell {
   padding: 0;
 }
+
+.wande .mini_bd {
+  font-size: 13px;
+}
