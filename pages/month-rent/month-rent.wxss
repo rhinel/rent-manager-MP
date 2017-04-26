@@ -54,3 +54,7 @@
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
+
+.month-rent .button-sp-area {
+  padding: 10px 0;
+}

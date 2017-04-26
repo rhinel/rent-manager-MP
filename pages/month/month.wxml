@@ -28,11 +28,8 @@
         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.fanghao}}</view>
         <view class="weui-media-box__desc weui-cell__ft_in-access">
 
-          <!--没有租住和收租为空置-->
-          <view class="weui-badge" wx:if="{{item.leaseId.status != 1 && !item.rents[0]}}" style="background-color: #888;">空置</view>
-
           <!--有租住、没有收租为未计租-->
-          <view class="weui-badge" wx:if="{{item.leaseId.status == 1 && !item.rents[0]}}">未计租</view>
+          <view class="weui-badge" wx:if="{{!item.rents[0]}}">未计租</view>
 
           <!--有收租的价格，最新一次-->
           <view class="money" wx:if="{{item.rents[0]}}">￥{{item.rents[0].calRentResult}}元</view>

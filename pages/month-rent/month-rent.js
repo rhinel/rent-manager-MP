@@ -1,4 +1,4 @@
-//house-det.js
+//month-det.js
 let ajax = require('../../assets/utils/request.js')
 let formatDate = require('../../assets/utils/util.js').formatDate
 Page({
@@ -127,5 +127,11 @@ Page({
         let param = {}
         param['detList[' + e.currentTarget.dataset.index + '].show'] = !that.data.detList[e.currentTarget.dataset.index].show
         that.setData(param)
+    },
+    bindGoToDet(e) {
+        let that = this
+        wx.navigateTo({
+            url: '/pages/month-rent-det/month-rent-det?rentId=' + e.currentTarget.dataset.id
+        })
     }
 })

@@ -8,6 +8,7 @@
     "pages/wande/wande",
     "pages/month/month",
     "pages/month-rent/month-rent",
+    "pages/month-rent-det/month-rent-det",
     "pages/house/house",
     "pages/house-det/house-det"
   ],

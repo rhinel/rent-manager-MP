@@ -1,0 +1,33 @@
+/**month-rent-det.wxss**/
+
+.month-rent-det .weui-form-preview__value {
+  text-align: right;
+}
+
+.month-rent-det .badge1 {
+  padding: 0.05em 0.4em;
+  margin-left: 4px;
+  vertical-align: top;
+  background-color: #576b95;
+}
+
+.month-rent-det .weui-media-box__desc {
+  -webkit-line-clamp: initial;
+}
+
+.month-rent-det .weui-loadmore__tips_in-line {
+  background-color: #f8f8f8;
+}
+
+.month-rent-det .loadmore .weui-loadmore_line {
+  margin-top: 1.5em;
+  margin-bottom: calc(-0.25em - 10px);
+}
+
+.month-rent-det .loadmore {
+  overflow: hidden;
+}
+
+.month-rent-det .button-sp-area {
+  padding: 10px 0;
+}

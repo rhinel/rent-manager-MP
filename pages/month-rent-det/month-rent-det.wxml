@@ -1,0 +1,48 @@
+
+<!--month-rent-det.wxml-->
+
+<!--基础信息-->
+<view class="container month-rent-det page__bd" hidden="{{!loaded || !det}}">
+  <view class="weui-form-preview">
+    <view class="weui-form-preview__hd">
+      <view class="weui-form-preview__label">房屋</view>
+      <view class="weui-form-preview__value_in-hd">{{det.fanghao}}</view>
+    </view>
+    <view class="weui-form-preview__bd">
+      <view class="weui-form-preview__item">
+        <view class="weui-form-preview__label">说明</view>
+        <view class="weui-form-preview__value">{{det.haoId.detail || '无'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="loadmore" data-index="{{index}}">
+    <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{det.addTime}}租单</view>
+    </view>
+  </view>
+
+  <!--计租信息-->
+  <view class="weui-panel weui-panel_access">
+    <view class="weui-panel__hd">计租信息</view>
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_text">
+        <view class="weui-media-box__desc">
+          <view class="weui-form-preview__item">
+            <view class="weui-form-preview__label">合计</view>
+            <view class="weui-form-preview__value">
+              <view>￥{{det.calRentResult || '0'}}元
+                <view class="weui-badge badge1">{{det.fix ? '修' : '计'}}</view>
+              </view>
+              <view>
+                {{det.addTime}}
+              </view>
+              <view wx:if="{{det.remark}}">
+                {{det.remark}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

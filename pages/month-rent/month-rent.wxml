@@ -11,7 +11,7 @@
     <view class="weui-form-preview__bd">
       <view class="weui-form-preview__item">
         <view class="weui-form-preview__label">说明</view>
-        <view class="weui-form-preview__value">{{detList[0].detail || '无'}}</view>
+        <view class="weui-form-preview__value">{{detList[0].haoId.detail || '无'}}</view>
       </view>
     </view>
   </view>
@@ -283,6 +283,11 @@
               </view>
             </view>
           </view>
+        </view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="button-sp-area">
+          <button class="weui-btn" type="primary" data-id="{{det._id}}" bindtap="bindGoToDet">修改状态</button>
         </view>
       </view>
     </view>
