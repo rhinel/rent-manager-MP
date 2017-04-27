@@ -31,3 +31,7 @@
 .month-rent-det .button-sp-area {
   padding: 10px 0;
 }
+
+.month-rent-det .month-rent-det-form .weui-cells::before {
+  border-top: 0;
+}

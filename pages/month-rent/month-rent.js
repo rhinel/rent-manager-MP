@@ -43,7 +43,21 @@ Page({
     },
     onShow() {
         // 生命周期函数--监听页面显示
-
+        if (!this.data.loaded) {
+            return
+        }
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            duration: 2000000
+        })
+        Promise.all([
+            new Promise((resolve) => {
+                this.bindGetRentDet(resolve)
+            })
+        ]).then((data) => {
+            wx.hideToast()
+        })
     },
     onHide() {
         // 生命周期函数--监听页面隐藏
