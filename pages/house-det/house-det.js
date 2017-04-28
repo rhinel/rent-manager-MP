@@ -6,7 +6,11 @@ Page({
         loaded: false,
         id: '',
         det: {},
-        payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他']
+        payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他'],
+        showDet: {
+            water: false,
+            electric: false
+        }
     },
     onLoad(options) {
         wx.showToast({
@@ -122,5 +126,12 @@ Page({
             result = Math.round(result * 100) / 100
         }
         return result
+    },
+    bindOpenDet(e) {
+        let that = this
+        let value = e.currentTarget.dataset.type
+        let data = {}
+        data['showDet.' + value] = !that.data.showDet[value]
+        that.setData(data)
     }
 })

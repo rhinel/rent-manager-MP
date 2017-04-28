@@ -32,3 +32,14 @@
   margin-top: 1.5em;
   margin-bottom: -10px;
 }
+
+.house-det .water, .house-det .electric {
+  height: 0;
+  padding: 0 15px;
+  overflow: hidden;
+}
+
+.house-det .water-show, .house-det .electric-show {
+  height: auto;
+  padding: 15px;
+}
