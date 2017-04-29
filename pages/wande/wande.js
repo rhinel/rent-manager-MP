@@ -141,10 +141,10 @@ Page({
     ajax('/inner/house/listWithCal', {}, (res) => {
       that.setData({
         houseList: res.data.data,
-        'addWaterSelect.haoIndex': 0,
+        // 'addWaterSelect.haoIndex': 0,
         'addWater.haoId': res.data.data[0] ? res.data.data[0]._id : '',
         'addWaterVD.haoId': true,
-        'addElectricSelect.haoIndex': 0,
+        // 'addElectricSelect.haoIndex': 0,
         'addElectric.haoId': res.data.data[0] ? res.data.data[0]._id : '',
         'addElectricVD.haoId': true
       })

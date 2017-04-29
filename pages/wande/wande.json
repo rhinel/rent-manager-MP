@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "水电管理"
+    "navigationBarTitleText": "水电管理",
+    "enablePullDownRefresh": false
 }
