@@ -5,15 +5,17 @@ Page({
         count: {
             houseCount: 0,
             leaseEmpty: 0,
+
             rentList1Count: 0,
-            rentList1isTodayCountMoney: 0,
-            rentList3Count: 0,
-            rentList3isTodayCountMoney: 0,
-            rentList3okCount: 0,
-            rentList3okCountMoney: 0,
             rentList1isTodayCount: 0,
+            rentList1isTodayCountMoney: 0,
+
+            rentList3Count: 0,
             rentList3isTodayCount: 0,
-            rentList3okisTodayCount: 0
+            rentList3isTodayCountMoney: 0,
+
+            rentList3okCount: 0,
+            rentList3okCountMoney: 0
         },
         newestMonth: ''
     },
@@ -115,8 +117,8 @@ Page({
         }, (res) => {
             let setType = {}
             setType['count.rentList' + (typ || 1) + 'Count'] = res.data.data.count
-            setType['count.rentList' + (typ || 1) + 'isTodayCountMoney'] = res.data.data.isTodayCountMoney
             setType['count.rentList' + (typ || 1) + 'isTodayCount'] = res.data.data.isTodayCount
+            setType['count.rentList' + (typ || 1) + 'isTodayCountMoney'] = res.data.data.isTodayCountMoney
             that.setData(setType)
             resolve && resolve()
         }, (res) => {
@@ -135,8 +137,8 @@ Page({
         }, (res) => {
             let setType = {}
             setType['count.rentList' + (typ || 3) + 'okCount'] = res.data.data.count
-            setType['count.rentList' + (typ || 3) + 'okCountMoney'] = res.data.data.countMoney
             setType['count.rentList' + (typ || 3) + 'okisTodayCount'] = res.data.data.isTodayCount
+            setType['count.rentList' + (typ || 3) + 'okCountMoney'] = res.data.data.countMoney
             setType.newestMonth = res.data.data.month
             that.setData(setType)
             resolve && resolve()
