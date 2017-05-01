@@ -10,6 +10,11 @@
 .dashboard .weui-grid {
   width: 50%;
 }
-.dashboard .wg25{
+
+.dashboard .wg25 {
   width: 25%;
+}
+
+.dashboard .wg33 {
+  width: 33.3333333333%;
 }
