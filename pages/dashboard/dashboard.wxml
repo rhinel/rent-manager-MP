@@ -4,7 +4,7 @@
   <view class="page__hd">
     <view class="page__title">Rent-Manager</view>
   </view>
-  <view class="page__bd">
+  <view>
     <view class="weui-grids">
       <view class="weui-grid wg33" hover-class="weui-grid_active" data-type="tab" data-url="/pages/house/house" bindtap="bindGoPage">
         <view class="weui-grid__icon">
