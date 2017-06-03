@@ -100,13 +100,17 @@ Page({
                     _data.lease.leaserange && (_data.lease.leaserange[0] = that.bindGetFormatDate(_data.lease.leaserange[0]))
                     _data.lease.leaserange && (_data.lease.leaserange[1] = that.bindGetFormatDate(_data.lease.leaserange[1]))
                     // 水表的时间显示
-                    _data.calWater.addTime = that.bindGetFormatDate(_data.calWater.addTime)
-                    _data.calWater.tnew.addTime = that.bindGetFormatDate(_data.calWater.tnew.addTime)
-                    _data.calWater.old.addTime = that.bindGetFormatDate(_data.calWater.old.addTime)
+                    if (_data.calWater) {
+                      _data.calWater.addTime = that.bindGetFormatDate(_data.calWater.addTime)
+                      _data.calWater.tnew.addTime = that.bindGetFormatDate(_data.calWater.tnew.addTime)
+                      _data.calWater.old.addTime = that.bindGetFormatDate(_data.calWater.old.addTime)
+                    }
                     // 电表的时间显示
-                    _data.calElectric.addTime = that.bindGetFormatDate(_data.calElectric.addTime)
-                    _data.calElectric.tnew.addTime = that.bindGetFormatDate(_data.calElectric.tnew.addTime)
-                    _data.calElectric.old.addTime = that.bindGetFormatDate(_data.calElectric.old.addTime)
+                    if (_data.calElectric) {
+                      _data.calElectric.addTime = that.bindGetFormatDate(_data.calElectric.addTime)
+                      _data.calElectric.tnew.addTime = that.bindGetFormatDate(_data.calElectric.tnew.addTime)
+                      _data.calElectric.old.addTime = that.bindGetFormatDate(_data.calElectric.old.addTime)
+                    }
                     // 计租时间
                     _data.addTime = that.bindGetFormatDate(_data.addTime)
                     if (_data.type) {
