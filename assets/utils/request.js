@@ -1,5 +1,5 @@
-let host = 'http://localhost/api'
-// let host = 'https://rent-manager.cn/api'
+// let host = 'http://localhost/api'
+let host = 'https://rent-manager.cn/api'
 
 let request = (path, data, callscue, callerr, callcomp) => {
   let token = wx.getStorageSync('token')
