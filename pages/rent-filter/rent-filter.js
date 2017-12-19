@@ -1,5 +1,5 @@
 //rent-filter.js
-let ajax = require('../../assets/utils/request.js')
+const ajax = require('../../assets/utils/request.js')
 Page({
   data: {
     ajax: '',
@@ -19,10 +19,9 @@ Page({
       ajaxType: Number(options.ajaxType),
       ajaxToday: Number(options.ajaxToday)
     })
-    wx.showToast({
+    wx.showLoading({
       title: '加载中',
-      icon: 'loading',
-      duration: 2000000
+      mask: true
     })
     // 生命周期函数--监听页面加载
     Promise.all([
@@ -30,7 +29,7 @@ Page({
         this.bindGetRent(resolve)
       })
     ]).then((data) => {
-        wx.hideToast()
+      wx.hideLoading()
       })
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
@@ -75,7 +74,7 @@ Page({
     return false
   },
   bindGetRent(resolve) {
-    let that = this
+    const that = this
     let url = ''
     let content = ''
     let key = ''
@@ -117,14 +116,14 @@ Page({
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
-        image: '../../assets/error.png',
+        image: '/assets/error.png',
         icon: 'loading',
         duration: 2000
       })
     })
   },
   bindGetFilterDate() {
-    let that = this
+    const that = this
     let filter = []
     if (!that.data.filter) {
       filter = that.data.rentDate
@@ -163,8 +162,9 @@ Page({
     this.bindGetFilterDate()
   },
   bindGoToDet(e) {
+    const { id, monthid } = e.currentTarget.dataset
     wx.navigateTo({
-      url: '/pages/month-rent/month-rent?haoId=' + e.currentTarget.dataset.id + '&monthId=' + e.currentTarget.dataset.monthid
+      url: '/pages/month-rent/month-rent?haoId=' + id + '&monthId=' + monthid
     })
   }
 })

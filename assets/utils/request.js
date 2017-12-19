@@ -1,5 +1,5 @@
-// let host = 'https://localhost/api'
-let host = 'https://rent-manager.cn/api'
+let host = 'http://localhost/api'
+// let host = 'https://rent-manager.cn/api'
 
 let request = (path, data, callscue, callerr, callcomp) => {
   let token = wx.getStorageSync('token')
@@ -15,7 +15,7 @@ let request = (path, data, callscue, callerr, callcomp) => {
         // 接口代码错误
         wx.showToast({
           title: String(res.statusCode),
-          image: '../../assets/error.png',
+          image: '/assets/error.png',
           icon: 'loading',
           duration: 2000
         })
@@ -27,7 +27,7 @@ let request = (path, data, callscue, callerr, callcomp) => {
         })
         wx.showToast({
           title: String(res.data.code),
-          image: '../../assets/error.png',
+          image: '/assets/error.png',
           icon: 'loading',
           duration: 2000
         })
@@ -36,7 +36,7 @@ let request = (path, data, callscue, callerr, callcomp) => {
         if (!callerr) {
           wx.showToast({
             title: String(res.data.code),
-            image: '../../assets/error.png',
+            image: '/assets/error.png',
             icon: 'loading',
             duration: 2000
           })
@@ -59,7 +59,7 @@ let request = (path, data, callscue, callerr, callcomp) => {
     fail(res) {
       wx.showToast({
         title: '接口出错',
-        image: '../../assets/error.png',
+        image: '/assets/error.png',
         icon: 'loading',
         duration: 2000
       })

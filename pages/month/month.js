@@ -1,5 +1,5 @@
 //month.js
-let ajax = require('../../assets/utils/request.js')
+const ajax = require('../../assets/utils/request.js')
 Page({
   data: {
     filter: '',
@@ -11,10 +11,9 @@ Page({
     payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他']
   },
   onLoad(options) {
-    wx.showToast({
+    wx.showLoading({
       title: '加载中',
-      icon: 'loading',
-      duration: 2000000
+      mask: true
     })
     // 生命周期函数--监听页面加载
     Promise.all([
@@ -25,7 +24,7 @@ Page({
         this.bindGetHouse(resolve)
       })
     ]).then((data) => {
-      wx.hideToast()
+      wx.hideLoading()
     })
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
@@ -73,7 +72,7 @@ Page({
     return false
   },
   bindGetMonth(resolve) {
-    let that = this
+    const that = this
     ajax('/inner/month/newest', {}, (res) => {
       that.setData({
         month: res.data.data
@@ -82,14 +81,14 @@ Page({
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
-        image: '../../assets/error.png',
+        image: '/assets/error.png',
         icon: 'loading',
         duration: 2000
       })
     })
   },
   bindGetHouse(resolve) {
-    let that = this
+    const that = this
     ajax('/inner/rent/listByNewestMonth', {}, (res) => {
       that.setData({
         houseDate: res.data.data
@@ -99,14 +98,14 @@ Page({
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
-        image: '../../assets/error.png',
+        image: '/assets/error.png',
         icon: 'loading',
         duration: 2000
       })
     })
   },
   bindGetFilterDate() {
-    let that = this
+    const that = this
     let filter = []
     if (!that.data.filter) {
       filter = that.data.houseDate
@@ -145,7 +144,7 @@ Page({
     this.bindGetFilterDate()
   },
   bindGoToDet(e) {
-    let that = this
+    const that = this
     wx.navigateTo({
       url: '/pages/month-rent/month-rent?haoId=' + e.currentTarget.dataset.id + '&monthId=' + that.data.month._id
     })
