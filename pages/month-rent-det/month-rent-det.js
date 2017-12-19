@@ -1,4 +1,6 @@
 //house-det.js
+//获取应用实例
+const { payTypeVal } = getApp().globalData
 const ajax = require('../../assets/utils/request.js')
 const formatDate = require('../../assets/utils/util.js').formatDate
 Page({
@@ -6,7 +8,7 @@ Page({
     loaded: false,
     rentId: '',
     det: {},
-    payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他'],
+    payTypeVal,
     types: [
       { label: '已交', value: 1 },
       { label: '给单', value: 2 },

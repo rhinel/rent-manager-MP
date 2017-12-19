@@ -1,4 +1,6 @@
 //month-det.js
+//获取应用实例
+const { typesVal, payTypeVal } = getApp().globalData
 const ajax = require('../../assets/utils/request.js')
 const formatDate = require('../../assets/utils/util.js').formatDate
 Page({
@@ -7,8 +9,8 @@ Page({
     haoId: '',
     monthId: '',
     detList: {},
-    typesVal: ['', '已交', '给单', '房东'],
-    payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他']
+    typesVal,
+    payTypeVal
   },
   onLoad(options) {
     wx.showLoading({

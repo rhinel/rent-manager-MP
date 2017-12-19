@@ -1,4 +1,6 @@
 //rent-filter.js
+//获取应用实例
+const { typesVal, payTypeVal } = getApp().globalData
 const ajax = require('../../assets/utils/request.js')
 Page({
   data: {
@@ -10,8 +12,8 @@ Page({
     title: '',
     rentDate: [],
     rentDateFiltered: [],
-    typesVal: ['', '已交', '给单', '房东'],
-    payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他']
+    typesVal,
+    payTypeVal
   },
   onLoad(options) {
     this.setData({
