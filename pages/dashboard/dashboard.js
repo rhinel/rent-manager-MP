@@ -25,21 +25,21 @@ Page({
       mask: true
     })
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetCount(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetCount(resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindGetCountType(1, resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetCountType(1, resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindGetCountType(3, resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetCountType(3, resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindGetOkCountType(3, resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetOkCountType(3, resolve, reject)
       })
     ]).then((data) => {
       wx.hideLoading()
-    })
+    }).catch(() => {})
     // 生命周期函数--监听页面加载
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
@@ -66,17 +66,17 @@ Page({
   onPullDownRefresh() {
     // 页面相关事件处理函数--监听用户下拉动作
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetCount(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetCount(resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindGetCountType(1, resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetCountType(1, resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindGetCountType(3, resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetCountType(3, resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindGetOkCountType(3, resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetOkCountType(3, resolve, reject)
       })
     ]).then((data) => {
       wx.stopPullDownRefresh()
@@ -85,6 +85,8 @@ Page({
         icon: 'success',
         duration: 1000
       })
+    }).catch(() => {
+      wx.stopPullDownRefresh()
     })
     return false
   },
@@ -92,7 +94,7 @@ Page({
     // 页面上拉触底事件的处理函数
     return false
   },
-  bindGetCount(resolve) {
+  bindGetCount(resolve, reject) {
     const that = this
     ajax('/inner/dash/count', {}, (res) => {
       const { houseCount, leaseEmpty } = res.data.data
@@ -108,9 +110,10 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
-  bindGetCountType(typ, resolve) {
+  bindGetCountType(typ, resolve, reject) {
     const that = this
     ajax('/inner/dash/waitingListCount', {
       type: typ || 1
@@ -129,9 +132,10 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
-  bindGetOkCountType(typ, resolve) {
+  bindGetOkCountType(typ, resolve, reject) {
     const that = this
     ajax('/inner/dash/okListCount', {
       type: typ || 3
@@ -151,6 +155,7 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
   bindGoPage(e) {

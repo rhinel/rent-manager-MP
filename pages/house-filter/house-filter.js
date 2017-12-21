@@ -22,12 +22,12 @@ Page({
       mask: true
     })
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetHouse(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetHouse(resolve, reject)
       })
     ]).then((data) => {
       wx.hideLoading()
-    })
+    }).catch(() => {})
     // 生命周期函数--监听页面加载
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
@@ -54,8 +54,8 @@ Page({
   onPullDownRefresh() {
     // 页面相关事件处理函数--监听用户下拉动作
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetHouse(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetHouse(resolve, reject)
       })
     ]).then((data) => {
       wx.stopPullDownRefresh()
@@ -64,6 +64,8 @@ Page({
         icon: 'success',
         duration: 1000
       })
+    }).catch(() => {
+      wx.stopPullDownRefresh()
     })
     return false
   },
@@ -74,7 +76,7 @@ Page({
   bindGetFormatDate(v) {
     return v && formatDate(new Date(v))
   },
-  bindGetHouse(resolve) {
+  bindGetHouse(resolve, reject) {
     const that = this
     let url = ''
     if (that.data.ajax === 'leaseEmpty') {
@@ -102,6 +104,7 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
   bindGetFilterDate() {

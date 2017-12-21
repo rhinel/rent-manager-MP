@@ -24,15 +24,15 @@ Page({
       id: options.id
     })
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetHouseDet(resolve)
+      new Promise((resolve, rejcet) => {
+        this.bindGetHouseDet(resolve, rejcet)
       })
     ]).then((data) => {
       this.setData({
         loaded: true
       })
       wx.hideLoading()
-    })
+    }).catch(() => {})
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
         url: '/pages/index/index'
@@ -58,8 +58,8 @@ Page({
   onPullDownRefresh() {
     // 页面相关事件处理函数--监听用户下拉动作
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetHouseDet(resolve)
+      new Promise((resolve, rejcet) => {
+        this.bindGetHouseDet(resolve, rejcet)
       })
     ]).then((data) => {
       wx.stopPullDownRefresh()
@@ -68,13 +68,15 @@ Page({
         icon: 'success',
         duration: 1000
       })
+    }).catch(() => {
+      wx.stopPullDownRefresh()
     })
   },
   onReachBottom() {
     // 页面上拉触底事件的处理函数
 
   },
-  bindGetHouseDet(resolve) {
+  bindGetHouseDet(resolve, rejcet) {
     const that = this
     ajax('/inner/house/detByHao', {
       haoId: that.data.id
@@ -108,6 +110,7 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      rejcet && rejcet()
     })
   },
   bindGetFormatDate(v) {

@@ -40,15 +40,15 @@ Page({
       'changeType.rentId': options.rentId
     })
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetRentDet(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetRentDet(resolve, reject)
       })
     ]).then((data) => {
       this.setData({
         loaded: true
       })
       wx.hideLoading()
-    })
+    }).catch(() => {})
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
         url: '/pages/index/index'
@@ -74,8 +74,8 @@ Page({
   onPullDownRefresh() {
     // 页面相关事件处理函数--监听用户下拉动作
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetRentDet(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetRentDet(resolve, reject)
       })
     ]).then((data) => {
       wx.stopPullDownRefresh()
@@ -84,6 +84,8 @@ Page({
         icon: 'success',
         duration: 1000
       })
+    }).catch(() => {
+      wx.stopPullDownRefresh()
     })
   },
   onReachBottom() {
@@ -93,7 +95,7 @@ Page({
   bindGetFormatDate(v) {
     return v && formatDate(new Date(v))
   },
-  bindGetRentDet(resolve) {
+  bindGetRentDet(resolve, reject) {
     const that = this
     ajax('/inner/rent/one', {
       rentId: that.data.rentId
@@ -129,6 +131,7 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
   bindTypePickerChange(e) {

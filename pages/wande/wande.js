@@ -68,18 +68,18 @@ Page({
     })
     // 获取数据
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetHouse(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetHouse(resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindWaterDateChange(false, resolve)
+      new Promise((resolve, reject) => {
+        this.bindWaterDateChange(false, resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindElectricDateChange(false, resolve)
+      new Promise((resolve, reject) => {
+        this.bindElectricDateChange(false, resolve, reject)
       })
     ]).then((data) => {
       wx.hideLoading()
-    })
+    }).catch(() => {})
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
         url: '/pages/index/index'
@@ -105,14 +105,14 @@ Page({
   onPullDownRefresh() {
     // 页面相关事件处理函数--监听用户下拉动作
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetHouse(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetHouse(resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindWaterDateChange(false, resolve)
+      new Promise((resolve, reject) => {
+        this.bindWaterDateChange(false, resolve, reject)
       }),
-      new Promise((resolve) => {
-        this.bindElectricDateChange(false, resolve)
+      new Promise((resolve, reject) => {
+        this.bindElectricDateChange(false, resolve, reject)
       })
     ]).then((data) => {
       wx.stopPullDownRefresh()
@@ -121,6 +121,8 @@ Page({
         icon: 'success',
         duration: 1000
       })
+    }).catch(() => {
+      wx.stopPullDownRefresh()
     })
     return false
   },
@@ -138,7 +140,7 @@ Page({
   bindGetFormatDate(v) {
     return v && formatDate(new Date(v))
   },
-  bindGetHouse(resolve) {
+  bindGetHouse(resolve, reject) {
     const that = this
     ajax('/inner/house/listWithCal', {}, (res) => {
       const { data } = res.data
@@ -150,6 +152,13 @@ Page({
           jtem.tnew.addTime = that.bindGetFormatDate(jtem.tnew.addTime)
         })
       })
+      if (!data.length) {
+        data.push({
+          _id: '',
+          fanghao: '暂无数据',
+          disabled: true
+        })
+      }
       that.setData({
         houseList: data,
         // 'addWaterSelect.haoIndex': 0,
@@ -167,10 +176,11 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
 
-  bindWaterDateChange(e, resolve) {
+  bindWaterDateChange(e, resolve, reject) {
     const that = this
     that.setData({
       waterDateView: e ? e.detail.value : that.data.waterDateView
@@ -201,6 +211,7 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
 
@@ -275,7 +286,7 @@ Page({
     })
   },
 
-  bindElectricDateChange(e, resolve) {
+  bindElectricDateChange(e, resolve, reject) {
     let that = this
     that.setData({
       electricDateView: e ? e.detail.value : that.data.electricDateView
@@ -306,6 +317,7 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
 

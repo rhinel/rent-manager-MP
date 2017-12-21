@@ -27,12 +27,12 @@ Page({
     })
     // 生命周期函数--监听页面加载
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetRent(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetRent(resolve, reject)
       })
     ]).then((data) => {
       wx.hideLoading()
-      })
+    }).catch(() => {})
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
         url: '/pages/index/index'
@@ -58,8 +58,8 @@ Page({
   onPullDownRefresh() {
     // 页面相关事件处理函数--监听用户下拉动作
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetRent(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetRent(resolve, reject)
       })
     ]).then((data) => {
       wx.stopPullDownRefresh()
@@ -68,6 +68,8 @@ Page({
         icon: 'success',
         duration: 1000
       })
+    }).catch(() => {
+      wx.stopPullDownRefresh()
     })
     return false
   },
@@ -75,7 +77,7 @@ Page({
     // 页面上拉触底事件的处理函数
     return false
   },
-  bindGetRent(resolve) {
+  bindGetRent(resolve, reject) {
     const that = this
     let url = ''
     let content = ''
@@ -122,6 +124,7 @@ Page({
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
   bindGetFilterDate() {
