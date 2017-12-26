@@ -1,5 +1,7 @@
 //rent-filter.js
-let ajax = require('../../assets/utils/request.js')
+//获取应用实例
+const { typesVal, payTypeVal } = getApp().globalData
+const ajax = require('../../assets/utils/request.js')
 Page({
   data: {
     ajax: '',
@@ -10,8 +12,8 @@ Page({
     title: '',
     rentDate: [],
     rentDateFiltered: [],
-    typesVal: ['', '已交', '给单', '房东'],
-    payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他']
+    typesVal,
+    payTypeVal
   },
   onLoad(options) {
     this.setData({
@@ -19,19 +21,18 @@ Page({
       ajaxType: Number(options.ajaxType),
       ajaxToday: Number(options.ajaxToday)
     })
-    wx.showToast({
+    wx.showLoading({
       title: '加载中',
-      icon: 'loading',
-      duration: 2000000
+      mask: true
     })
     // 生命周期函数--监听页面加载
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetRent(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetRent(resolve, reject)
       })
     ]).then((data) => {
-        wx.hideToast()
-      })
+      wx.hideLoading()
+    }).catch(() => {})
     ajax('/inner/auth/check', {}, (res) => { }, (res) => {
       wx.reLaunch({
         url: '/pages/index/index'
@@ -57,8 +58,8 @@ Page({
   onPullDownRefresh() {
     // 页面相关事件处理函数--监听用户下拉动作
     Promise.all([
-      new Promise((resolve) => {
-        this.bindGetRent(resolve)
+      new Promise((resolve, reject) => {
+        this.bindGetRent(resolve, reject)
       })
     ]).then((data) => {
       wx.stopPullDownRefresh()
@@ -67,6 +68,8 @@ Page({
         icon: 'success',
         duration: 1000
       })
+    }).catch(() => {
+      wx.stopPullDownRefresh()
     })
     return false
   },
@@ -74,8 +77,8 @@ Page({
     // 页面上拉触底事件的处理函数
     return false
   },
-  bindGetRent(resolve) {
-    let that = this
+  bindGetRent(resolve, reject) {
+    const that = this
     let url = ''
     let content = ''
     let key = ''
@@ -117,14 +120,15 @@ Page({
     }, (res) => {
       wx.showToast({
         title: String(res.data.msg),
-        image: '../../assets/error.png',
+        image: '/assets/error.png',
         icon: 'loading',
         duration: 2000
       })
+      reject && reject()
     })
   },
   bindGetFilterDate() {
-    let that = this
+    const that = this
     let filter = []
     if (!that.data.filter) {
       filter = that.data.rentDate
@@ -163,8 +167,9 @@ Page({
     this.bindGetFilterDate()
   },
   bindGoToDet(e) {
+    const { id, monthid } = e.currentTarget.dataset
     wx.navigateTo({
-      url: '/pages/month-rent/month-rent?haoId=' + e.currentTarget.dataset.id + '&monthId=' + e.currentTarget.dataset.monthid
+      url: '/pages/month-rent/month-rent?haoId=' + id + '&monthId=' + monthid
     })
   }
 })

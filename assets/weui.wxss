@@ -313,7 +313,9 @@ icon {
   color: #0BB20C;
 }
 .weui-cell_select {
-  padding: 0;
+  /* padding: 0; */
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .weui-select {
   position: relative;
@@ -346,7 +348,7 @@ icon {
 }
 .weui-cell__hd_in-select-after,
 .weui-cell__bd_in-select-before {
-  padding-left: 15px;
+  /* padding-left: 15px; */
 }
 .weui-cell_vcode {
   padding-right: 0;
