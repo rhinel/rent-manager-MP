@@ -1,14 +1,14 @@
 //index.js
 //获取应用实例
-let app = getApp()
-let md5 = require('../../assets/utils/md5.js')
-let ajax = require('../../assets/utils/request.js')
+const app = getApp()
+const md5 = require('../../assets/utils/md5.js')
+const ajax = require('../../assets/utils/request.js')
 Page({
   // data
   data: {
     userInfo: {
       nickName: 'Friend',
-      avatarUrl: '../../assets/photo.jpg'
+      avatarUrl: '/assets/photo.jpg'
     },
     login: {
       name: 'xiong',
@@ -22,17 +22,16 @@ Page({
   // 生命周期
   onLoad() {
     let that = this
-    wx.showToast({
+    wx.showLoading({
       title: '加载中',
-      icon: 'loading',
-      duration: 2000000
+      mask: true
     })
     // 调用应用实例的方法获取全局数据
     app.getUserInfo((userInfo) => {
       that.setData({
         userInfo: userInfo
       })
-      wx.hideToast()
+      wx.hideLoading()
     })
     ajax('/inner/auth/check', {}, (res) => {
       wx.switchTab({
@@ -73,16 +72,15 @@ Page({
       return
     }
     // 请求登陆
-    wx.showToast({
+    wx.showLoading({
       title: '登陆中',
-      icon: 'loading',
-      mask: true,
-      duration: 2000000
+      mask: true
     })
     ajax('/outer/log/login', {
       name: this.data.login.name,
       pwd: md5(this.data.login.pwd)
     }, (res) => {
+      wx.hideLoading()
       wx.showToast({
         title: '登陆成功',
         icon: 'success',
@@ -96,8 +94,8 @@ Page({
       }, 1000)
     }, (res) => {
       wx.showToast({
-        title: '输入错误', // String(res.data.msg)
-        image: '../../assets/error.png',
+        title: '输入错误',
+        image: '/assets/error.png',
         icon: 'loading',
         duration: 2000
       })

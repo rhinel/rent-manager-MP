@@ -2,7 +2,9 @@
 App({
   // data
   globalData: {
-    userInfo: null
+    userInfo: null,
+    typesVal: ['', '已交', '给单', '房东'],
+    payTypeVal: ['微信', '支付宝', '银行转账', '现金', '房东自收', '其他']
   },
   // 生命周期
   onLaunch(options) {
