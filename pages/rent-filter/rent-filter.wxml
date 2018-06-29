@@ -5,47 +5,47 @@
   <view class="weui-search-bar">
     <view class="weui-search-bar__form">
       <view class="weui-search-bar__box">
-        <icon class="weui-icon-search_in-box" 
-          type="search" 
+        <icon class="weui-icon-search_in-box"
+          type="search"
           size="14"></icon>
         <input class="weui-search-bar__input"
-          type="text"  
-          placeholder="搜索" 
-          value="{{filter}}" 
-          focus="{{filterShowed}}" 
+          type="text"
+          placeholder="搜索"
+          value="{{filter}}"
+          focus="{{filterShowed}}"
           bindinput="bindGetFilter" />
-        <view class="weui-icon-clear" 
-          wx:if="{{filter.length > 0}}" 
+        <view class="weui-icon-clear"
+          wx:if="{{filter.length > 0}}"
           bindtap="bindGetClearFilter">
-          <icon 
-            type="clear" 
+          <icon
+            type="clear"
             size="14"></icon>
         </view>
       </view>
-      <label class="weui-search-bar__label" 
-        hidden="{{filterShowed}}" 
+      <label class="weui-search-bar__label"
+        hidden="{{filterShowed}}"
         bindtap="bindGetShowFilter">
-        <icon class="weui-icon-search" 
-          type="search" 
+        <icon class="weui-icon-search"
+          type="search"
           size="14"></icon>
         <view class="weui-search-bar__text">搜索</view>
       </label>
     </view>
-    <view class="weui-search-bar__cancel-btn" 
-      hidden="{{!filterShowed}}" 
+    <view class="weui-search-bar__cancel-btn"
+      hidden="{{!filterShowed}}"
       bindtap="bindGetHideFilter">取消</view>
   </view>
 
   <!--列表-->
-  <view class="weui-panel" 
+  <view class="weui-panel"
     wx:if="{{rentDateFiltered.length}}">
     <view class="weui-panel__hd">{{title}}</view>
     <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text" 
-        wx:for="{{rentDateFiltered}}" 
-        wx:key="_id" 
-        data-id="{{item.haoId}}" 
-        data-monthid="{{item.monthId._id}}" 
+      <view class="weui-media-box weui-media-box_text"
+        wx:for="{{rentDateFiltered}}"
+        wx:key="_id"
+        data-id="{{item.haoId}}"
+        data-monthid="{{item.monthId._id}}"
         bindtap="bindGoToDet">
         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.fanghao}}</view>
         <view class="weui-media-box__desc weui-cell__ft_in-access">
@@ -54,25 +54,25 @@
           <view class="money">￥{{item.calRentResult}}元</view>
 
           <!--租住交租信息-->
-          <view class="weui-badge" 
+          <view class="weui-badge"
             style="margin-left: 5px;background-color: #576b95;">
             {{payTypeVal[item.lease.payType]}}
           </view>
-          <view class="weui-badge" 
+          <view class="weui-badge"
             style="margin-left: 5px;background-color: #576b95;">
             {{item.lease.payDay}}日
           </view>
 
           <!--交租状态-->
-          <view class="weui-badge" 
-            wx:if="{{!item.type || item.type.type.length == 0}}" 
+          <view class="weui-badge"
+            wx:if="{{!item.type || item.type.type.length == 0}}"
             style="margin-left: 5px;">
             新建
           </view>
-          <view class="weui-badge" 
-            wx:for="{{item.type.type}}" 
-            wx:key="*this" 
-            wx:for-item="type" 
+          <view class="weui-badge"
+            wx:for="{{item.type.type}}"
+            wx:key="*this"
+            wx:for-item="type"
             style="margin-left: 5px;background-color: #1AAD19;">
             {{typesVal[type]}}
           </view>
@@ -80,7 +80,7 @@
       </view>
     </view>
   </view>
-  <view class="page__bd" 
+  <view class="page__bd"
     wx:if="{{!rentDateFiltered.length}}">
     <view class="weui-loadmore weui-loadmore_line">
       <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>

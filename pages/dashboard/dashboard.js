@@ -164,7 +164,9 @@ Page({
       wx.switchTab({ url })
     } else if (type == 'page') {
       wx.navigateTo({
-        url: '/pages/rent-filter/rent-filter?ajax=' + ajax + '&ajaxType=' + ajaxtype + '&ajaxToday=' + ajaxtoday
+        url: '/pages/rent-filter/rent-filter?ajax=' + ajax
+          + '&ajaxType=' + ajaxtype
+          + '&ajaxToday=' + ajaxtoday
       })
     } else if (type == 'house') {
       wx.navigateTo({

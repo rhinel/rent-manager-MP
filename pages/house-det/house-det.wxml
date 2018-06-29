@@ -1,5 +1,5 @@
 <!--house-det.wxml-->
-<view class="container house-det page__bd" 
+<view class="container house-det page__bd"
   hidden="{{!loaded || !det._id}}">
 
   <!--基础信息-->
@@ -22,7 +22,7 @@
   </view>
 
   <!--租户信息-->
-  <view class="weui-panel weui-panel_access" 
+  <view class="weui-panel weui-panel_access"
     wx:if="{{det.leaseId.status == 1}}">
     <view class="weui-panel__hd">当前租住信息</view>
     <view class="weui-panel__bd">
@@ -73,7 +73,7 @@
               <view>
                 {{det.leaseId.leaserange[0]}} ~ {{det.leaseId.leaserange[1]}}
               </view>
-              <view 
+              <view
                 wx:if="{{det.leaseId.remark}}">
                 {{det.leaseId.remark}}
               </view>
@@ -88,26 +88,26 @@
   <view class="weui-panel weui-panel_access">
     <view class="weui-panel__hd">当前水电信息</view>
     <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text" 
-        data-type="water" 
+      <view class="weui-media-box weui-media-box_text"
+        data-type="water"
         bindtap="bindOpenDet">
         <view class="weui-media-box__desc">
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label">
               最新水表
-              <icon 
-                type="download" 
-                size="13" 
+              <icon
+                type="download"
+                size="13"
                 hidden="{{showDet.water}}" /></view>
             <view class="weui-form-preview__value">
               <view>
                 {{det.waterId.water || '0'}}吨 - {{det.calWaterId.tnew.water || '0'}}吨
               </view>
-              <view 
+              <view
                 wx:if="{{det.waterId.addTime}}">
                 {{det.waterId.addTime}}
               </view>
-              <view 
+              <view
                 wx:if="{{det.waterId.remark}}">
                 {{det.waterId.remark}}
               </view>
@@ -115,7 +115,7 @@
           </view>
         </view>
       </view>
-      <view class="weui-media-box weui-media-box_text {{showDet.water ? 'water-show' : 'water'}}" 
+      <view class="weui-media-box weui-media-box_text {{showDet.water ? 'water-show' : 'water'}}"
         wx:if="{{det.leaseId.status == 1}}">
         <view class="weui-media-box__desc">
           <view class="weui-form-preview__item">
@@ -124,14 +124,14 @@
               <view>
                 低消：{{det.leaseId.calWaterPrice.minPrice || '0'}}吨
               </view>
-              <view 
+              <view
                 wx:if="{{det.leaseId.calWaterPrice.calType == 'single'}}">
                 单价：￥{{det.leaseId.calWaterPrice.singlePrice}}元/吨
               </view>
-              <view 
+              <view
                 wx:else>
-                <view 
-                  wx:for="{{det.leaseId.calWaterPrice.stepPrice}}" 
+                <view
+                  wx:for="{{det.leaseId.calWaterPrice.stepPrice}}"
                   wx:key="_id">
                   {{item.step}}吨及以下￥{{item.price}}元/吨
                 </view>
@@ -149,26 +149,26 @@
           </view>
         </view>
       </view>
-      <view class="weui-media-box weui-media-box_text" 
-        data-type="electric" 
+      <view class="weui-media-box weui-media-box_text"
+        data-type="electric"
         bindtap="bindOpenDet">
         <view class="weui-media-box__desc">
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label">
             最新电表
-            <icon 
-              type="download" 
-              size="13" 
+            <icon
+              type="download"
+              size="13"
               hidden="{{showDet.electric}}" /></view>
             <view class="weui-form-preview__value">
               <view>
                 {{det.electricId.electric || '0'}}度 - {{det.calElectricId.tnew.electric || '0'}}度
               </view>
-              <view 
+              <view
                 wx:if="{{det.electricId.addTime}}">
                 {{det.electricId.addTime}}
               </view>
-              <view 
+              <view
                 wx:if="{{det.electricId.remark}}">
                 {{det.electricId.remark}}
               </view>
@@ -176,7 +176,7 @@
           </view>
         </view>
       </view>
-      <view class="weui-media-box weui-media-box_text {{showDet.electric ? 'electric-show' : 'electric'}}" 
+      <view class="weui-media-box weui-media-box_text {{showDet.electric ? 'electric-show' : 'electric'}}"
         wx:if="{{det.leaseId.status == 1}}">
         <view class="weui-media-box__desc">
           <view class="weui-form-preview__item">
@@ -185,14 +185,14 @@
               <view>
                 低消：{{det.leaseId.calElePrice.minPrice || '0'}}度
               </view>
-              <view 
+              <view
                 wx:if="{{det.leaseId.calElePrice.calType == 'single'}}">
                 单价：￥{{det.leaseId.calElePrice.singlePrice}}元/度
               </view>
-              <view 
+              <view
                 wx:else>
-                <view 
-                  wx:for="{{det.leaseId.calElePrice.stepPrice}}" 
+                <view
+                  wx:for="{{det.leaseId.calElePrice.stepPrice}}"
                   wx:key="_id">
                   {{item.step}}度及以下￥{{item.price}}元/度
                 </view>

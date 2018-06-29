@@ -1,7 +1,7 @@
 <!--month-rent.wxml-->
 
 <!--基础信息-->
-<view class="container month-rent page__bd" 
+<view class="container month-rent page__bd"
   hidden="{{!loaded || !detList.length}}">
   <view class="weui-form-preview">
     <view class="weui-form-preview__hd">
@@ -15,11 +15,11 @@
       </view>
     </view>
   </view>
-  <block wx:for="{{detList}}" 
-    wx:for-item="det" 
+  <block wx:for="{{detList}}"
+    wx:for-item="det"
     wx:key="_id">
-    <view class="loadmore" 
-      data-index="{{index}}" 
+    <view class="loadmore"
+      data-index="{{index}}"
       bindtap="bindToggle">
       <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
         <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{det.addTime}}租单</view>
@@ -122,7 +122,7 @@
                     <view>
                       {{det.calWater.old.addTime}}
                     </view>
-                    <view 
+                    <view
                       wx:if="{{det.calWater.old.remark}}">
                       {{det.calWater.old.remark}}
                     </view>
@@ -138,14 +138,14 @@
                     <view>
                       低消：{{det.calWater.calWater.minPrice || '0'}}吨
                     </view>
-                    <view 
+                    <view
                       wx:if="{{det.calWater.calWater.calType == 'single'}}">
                       单价：￥{{det.calWater.calWater.singlePrice}}元/吨
                     </view>
-                    <view 
+                    <view
                       wx:else>
-                      <view 
-                        wx:for="{{det.calWater.calWater.stepPrice}}" 
+                      <view
+                        wx:for="{{det.calWater.calWater.stepPrice}}"
                         wx:key="_id">
                         {{item.step}}吨及以下￥{{item.price}}元/吨
                       </view>
@@ -167,7 +167,7 @@
                     <view>
                       {{det.calWater.addTime}}
                     </view>
-                    <view 
+                    <view
                       wx:if="{{det.calWater.remark}}">
                       {{det.calWater.remark}}
                     </view>
@@ -186,7 +186,7 @@
                     <view>
                       {{det.calElectric.tnew.addTime}}
                     </view>
-                    <view 
+                    <view
                       wx:if="{{det.calElectric.tnew.remark}}">
                       {{det.calElectric.tnew.remark}}
                     </view>
@@ -205,7 +205,7 @@
                     <view>
                       {{det.calElectric.old.addTime}}
                     </view>
-                    <view 
+                    <view
                       wx:if="{{det.calElectric.old.remark}}">
                       {{det.calElectric.old.remark}}
                     </view>
@@ -221,14 +221,14 @@
                     <view>
                       低消：{{det.calElectric.calElectric.minPrice || '0'}}度
                     </view>
-                    <view 
+                    <view
                       wx:if="{{det.calElectric.calElectric.calType == 'single'}}">
                       单价：￥{{det.calElectric.calElectric.singlePrice}}元/度
                     </view>
-                    <view 
+                    <view
                       wx:else>
-                      <view 
-                        wx:for="{{det.calElectric.calElectric.stepPrice}}" 
+                      <view
+                        wx:for="{{det.calElectric.calElectric.stepPrice}}"
                         wx:key="_id">
                         {{item.step}}度及以下￥{{item.price}}元/度
                       </view>
@@ -252,7 +252,7 @@
                     <view>
                       {{det.calElectric.addTime}}
                     </view>
-                    <view 
+                    <view
                       wx:if="{{det.calElectric.remark}}">
                       {{det.calElectric.remark}}
                     </view>
@@ -282,7 +282,7 @@
                 <view>
                   {{det.addTime}}
                 </view>
-                <view 
+                <view
                   wx:if="{{det.remark}}">
                   {{det.remark}}
                 </view>
@@ -295,15 +295,15 @@
             <view class="weui-form-preview__item">
               <view class="weui-form-preview__label">状态</view>
               <view class="weui-form-preview__value">
-                <view class="weui-badge" 
+                <view class="weui-badge"
                   wx:if="{{!det.type || det.type.type.length == 0}}">新建</view>
-                <block 
+                <block
                   wx:else>
-                  <view 
-                    wx:for="{{det.type.type}}" 
-                    wx:key="*this" 
+                  <view
+                    wx:for="{{det.type.type}}"
+                    wx:key="*this"
                     wx:for-item="type">
-                    <view class="weui-badge badge1" 
+                    <view class="weui-badge badge1"
                       style="margin-right: 5px;background-color: #1AAD19;">
                       {{typesVal[type]}}
                     </view>
@@ -317,16 +317,16 @@
       </view>
       <view class="weui-cells weui-cells_after-title">
         <view class="button-sp-area">
-          <button class="weui-btn" 
-            type="primary" 
-            data-id="{{det._id}}" 
+          <button class="weui-btn"
+            type="primary"
+            data-id="{{det._id}}"
             bindtap="bindGoToDet">修改状态</button>
         </view>
       </view>
     </view>
   </block>
 </view>
-<view class="page__bd month-rent" 
+<view class="page__bd month-rent"
   wx:if="{{!detList.length}}">
   <view class="weui-loadmore weui-loadmore_line">
     <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
