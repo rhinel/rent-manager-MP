@@ -5,79 +5,79 @@
   <view class="weui-search-bar">
     <view class="weui-search-bar__form">
       <view class="weui-search-bar__box">
-        <icon class="weui-icon-search_in-box" 
-          type="search" 
+        <icon class="weui-icon-search_in-box"
+          type="search"
           size="14"></icon>
         <input class="weui-search-bar__input"
           type="text"
           placeholder="搜索"
           value="{{filter}}"
-          focus="{{filterShowed}}" 
+          focus="{{filterShowed}}"
           bindinput="bindGetFilter" />
-        <view class="weui-icon-clear" 
-          wx:if="{{filter.length > 0}}" 
+        <view class="weui-icon-clear"
+          wx:if="{{filter.length > 0}}"
           bindtap="bindGetClearFilter">
-          <icon 
-            type="clear" 
+          <icon
+            type="clear"
             size="14"></icon>
         </view>
       </view>
-      <label class="weui-search-bar__label" 
-        hidden="{{filterShowed}}" 
+      <label class="weui-search-bar__label"
+        hidden="{{filterShowed}}"
         bindtap="bindGetShowFilter">
-        <icon class="weui-icon-search" 
-          type="search" 
+        <icon class="weui-icon-search"
+          type="search"
           size="14"></icon>
         <view class="weui-search-bar__text">搜索</view>
       </label>
     </view>
-    <view class="weui-search-bar__cancel-btn" 
-      hidden="{{!filterShowed}}" 
+    <view class="weui-search-bar__cancel-btn"
+      hidden="{{!filterShowed}}"
       bindtap="bindGetHideFilter">取消</view>
   </view>
 
   <!--列表-->
-  <view class="weui-panel" 
+  <view class="weui-panel"
     wx:if="{{houseDateFiltered.length}}">
     <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text" 
-        wx:for="{{houseDateFiltered}}" 
-        wx:key="_id" 
-        data-id="{{item._id}}" 
+      <view class="weui-media-box weui-media-box_text"
+        wx:for="{{houseDateFiltered}}"
+        wx:key="_id"
+        data-id="{{item._id}}"
         bindtap="bindGoToDet">
         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.fanghao}}</view>
         <view class="weui-media-box__desc weui-cell__ft_in-access">
 
           <!--没有租住为空置-->
-          <view class="weui-badge" 
-            wx:if="{{item.leaseId.status != 1}}" 
+          <view class="weui-badge"
+            wx:if="{{item.leaseId.status != 1}}"
             style="background-color: #888;">空置</view>
 
           <!--有租住-->
-          <view class="weui-badge" 
-            wx:if="{{item.leaseId.status == 1}}" 
+          <view class="weui-badge"
+            wx:if="{{item.leaseId.status == 1}}"
             style="background-color: #1AAD19;">正常</view>
 
           <!--租住交租信息-->
-          <view class="weui-badge" 
-            wx:if="{{item.leaseId.status == 1}}" 
+          <view class="weui-badge"
+            wx:if="{{item.leaseId.status == 1}}"
             style="margin-left: 5px;background-color: #576b95;">
               {{payTypeVal[item.leaseId.payType]}}
             </view>
-          <view class="weui-badge" 
-            wx:if="{{item.leaseId.status == 1}}" 
+          <view class="weui-badge"
+            wx:if="{{item.leaseId.status == 1}}"
             style="margin-left: 5px;background-color: #576b95;">
               {{item.leaseId.payDay}}日
             </view>
 
           <!--租金-->
-          <view class="money" 
+          <view class="money"
             wx:if="{{item.leaseId.status == 1}}">
             ￥{{item.leaseId.rent}}元
           </view>
 
           <!--到期日-->
-          <view class="money" 
+          <view class="money"
             wx:if="{{item.leaseId.status == 1}}">
             {{item.leaseId.leaserange[1]}}到期
           </view>

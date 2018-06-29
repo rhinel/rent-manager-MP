@@ -1,15 +1,9 @@
 //index.js
-//获取应用实例
-const app = getApp()
 const md5 = require('../../assets/utils/md5.js')
 const ajax = require('../../assets/utils/request.js')
 Page({
   // data
   data: {
-    userInfo: {
-      nickName: 'Friend',
-      avatarUrl: '/assets/photo.jpg'
-    },
     login: {
       name: 'xiong',
       pwd: ''
@@ -21,18 +15,6 @@ Page({
   },
   // 生命周期
   onLoad() {
-    let that = this
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
-    // 调用应用实例的方法获取全局数据
-    app.getUserInfo((userInfo) => {
-      that.setData({
-        userInfo: userInfo
-      })
-      wx.hideLoading()
-    })
     ajax('/inner/auth/check', {}, (res) => {
       wx.switchTab({
         url: '/pages/dashboard/dashboard'

@@ -1,14 +1,16 @@
 <!--dashboard.wxml-->
 <view class="container dashboard page__bd">
+
   <view class="page__hd">
     <view class="page__title">Rent-Manager</view>
   </view>
+
   <view>
     <view class="weui-grids">
-      <view class="weui-grid wg33" 
-        hover-class="weui-grid_active" 
-        data-type="tab" 
-        data-url="/pages/house/house" 
+      <view class="weui-grid wg33"
+        hover-class="weui-grid_active"
+        data-type="tab"
+        data-url="/pages/house/house"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.houseCount || '0'}}户
@@ -16,10 +18,10 @@
         <view class="weui-grid__label">房屋总数</view>
       </view>
 
-      <view class="weui-grid wg33" 
-        hover-class="weui-grid_active" 
-        data-type="house" 
-        data-ajax="leaseEmpty" 
+      <view class="weui-grid wg33"
+        hover-class="weui-grid_active"
+        data-type="house"
+        data-ajax="leaseEmpty"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.leaseEmpty || '0'}}户
@@ -27,12 +29,12 @@
         <view class="weui-grid__label">空置总数</view>
       </view>
 
-      <view class="weui-grid wg33" 
-        hover-class="weui-grid_active" 
-        data-type="page" 
-        data-ajax="waiting" 
-        data-ajaxType="{{1}}" 
-        data-ajaxToday="{{0}}" 
+      <view class="weui-grid wg33"
+        hover-class="weui-grid_active"
+        data-type="page"
+        data-ajax="waiting"
+        data-ajaxType="{{1}}"
+        data-ajaxToday="{{0}}"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.rentList1Count || '0'}}户
@@ -40,12 +42,12 @@
         <view class="weui-grid__label">待收租金</view>
       </view>
 
-      <view class="weui-grid" 
-        hover-class="weui-grid_active" 
-        data-type="page" 
-        data-ajax="waiting" 
-        data-ajaxType="{{1}}" 
-        data-ajaxToday="{{1}}" 
+      <view class="weui-grid"
+        hover-class="weui-grid_active"
+        data-type="page"
+        data-ajax="waiting"
+        data-ajaxType="{{1}}"
+        data-ajaxToday="{{1}}"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.rentList1isTodayCount || '0'}}户
@@ -53,12 +55,12 @@
         <view class="weui-grid__label">今日待收</view>
       </view>
 
-      <view class="weui-grid" 
-        hover-class="weui-grid_active" 
-        data-type="page" 
-        data-ajax="waiting" 
-        data-ajaxType="{{1}}" 
-        data-ajaxToday="{{1}}" 
+      <view class="weui-grid"
+        hover-class="weui-grid_active"
+        data-type="page"
+        data-ajax="waiting"
+        data-ajaxType="{{1}}"
+        data-ajaxToday="{{1}}"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.rentList1isTodayCountMoney || '0'}}元
@@ -66,48 +68,48 @@
         <view class="weui-grid__label">今日待收租金</view>
       </view>
 
-      <view class="weui-grid" 
-        hover-class="weui-grid_active" 
-        data-type="page" 
-        data-ajax="waiting" 
-        data-ajaxType="{{3}}" 
-        data-ajaxToday="{{1}}" 
+      <view class="weui-grid"
+        hover-class="weui-grid_active"
+        data-type="page"
+        data-ajax="waiting"
+        data-ajaxType="{{3}}"
+        data-ajaxToday="{{1}}"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.rentList3isTodayCount || '0'}}户
         </view>
         <view class="weui-grid__label">待交房东</view>
       </view>
-      <view class="weui-grid" 
-        hover-class="weui-grid_active" 
-        data-type="page" 
-        data-ajax="waiting" 
-        data-ajaxType="{{3}}" 
-        data-ajaxToday="{{1}}" 
+      <view class="weui-grid"
+        hover-class="weui-grid_active"
+        data-type="page"
+        data-ajax="waiting"
+        data-ajaxType="{{3}}"
+        data-ajaxToday="{{1}}"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.rentList3isTodayCountMoney || '0'}}元
         </view>
         <view class="weui-grid__label">待交房东</view>
       </view>
-      <view class="weui-grid" 
-        hover-class="weui-grid_active" 
-        data-type="page" 
-        data-ajax="ok" 
-        data-ajaxType="{{3}}" 
-        data-ajaxToday="{{0}}" 
+      <view class="weui-grid"
+        hover-class="weui-grid_active"
+        data-type="page"
+        data-ajax="ok"
+        data-ajaxType="{{3}}"
+        data-ajaxToday="{{0}}"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.rentList3okCount || '0'}}户
         </view>
         <view class="weui-grid__label">{{newestMonth || '-'}}月已交房东</view>
       </view>
-      <view class="weui-grid" 
-        hover-class="weui-grid_active" 
-        data-type="page" 
-        data-ajax="ok" 
-        data-ajaxType="{{3}}" 
-        data-ajaxToday="{{0}}" 
+      <view class="weui-grid"
+        hover-class="weui-grid_active"
+        data-type="page"
+        data-ajax="ok"
+        data-ajaxType="{{3}}"
+        data-ajaxToday="{{0}}"
         bindtap="bindGoPage">
         <view class="weui-grid__icon">
           {{count.rentList3okCountMoney || '0'}}元
