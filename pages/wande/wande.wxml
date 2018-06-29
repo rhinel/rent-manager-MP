@@ -1,22 +1,21 @@
-
 <!--wande.wxml-->
 <view class="container wande page__bd">
   <view class="weui-tab">
     <view class="weui-navbar">
-      <block 
-        wx:for-items="{{tabs}}" 
+      <block
+        wx:for-items="{{tabs}}"
         wx:key="{{index}}">
-        <view id="{{index}}" 
-          class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" 
+        <view id="{{index}}"
+          class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
           bindtap="tabClick">
           <view class="weui-navbar__title">{{item}}</view>
         </view>
       </block>
-      <view class="weui-navbar__slider" 
+      <view class="weui-navbar__slider"
         style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
     </view>
     <view class="weui-tab__panel">
-      <view class="weui-tab__content" 
+      <view class="weui-tab__content"
         hidden="{{activeIndex != 0}}">
 
         <!--抄表-->
@@ -32,21 +31,21 @@
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <picker 
-                      value="{{addWaterSelect.haoIndex}}" 
-                      range="{{houseList}}" 
-                      range-key="fanghao" 
+                    <picker
+                      value="{{addWaterSelect.haoIndex}}"
+                      range="{{houseList}}"
+                      range-key="fanghao"
                       bindchange="bindHouseWaterPickerChange">
                       <view class="weui-select weui-select_in-select-after">
                         {{houseList[addWaterSelect.haoIndex] ? houseList[addWaterSelect.haoIndex].fanghao : '请选择'}}
                       </view>
                     </picker>
                   </view>
-                  <view class="weui-cell__ft" 
+                  <view class="weui-cell__ft"
                     wx:if="{{!addWaterVD.haoId}}">
-                    <icon 
-                      type="warn" 
-                      size="23" 
+                    <icon
+                      type="warn"
+                      size="23"
                       color="#E64340"></icon>
                   </view>
                 </view>
@@ -57,17 +56,17 @@
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <input class="weui-input" 
-                      type="digit" 
-                      value="{{addWater.water}}" 
-                      placeholder="Number" 
+                    <input class="weui-input"
+                      type="digit"
+                      value="{{addWater.water}}"
+                      placeholder="Number"
                       bindinput="bindKeyInputWater" />
                   </view>
-                  <view class="weui-cell__ft" 
+                  <view class="weui-cell__ft"
                     wx:if="{{!addWaterVD.water}}">
-                    <icon 
-                      type="warn" 
-                      size="23" 
+                    <icon
+                      type="warn"
+                      size="23"
                       color="#E64340"></icon>
                   </view>
                 </view>
@@ -78,18 +77,18 @@
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <picker 
-                      mode="date" 
-                      value="{{addWater.addTime}}" 
+                    <picker
+                      mode="date"
+                      value="{{addWater.addTime}}"
                       bindchange="bindAddWaterDateChange">
                       <view class="weui-input">{{addWater.addTime}}</view>
                     </picker>
                   </view>
-                  <view class="weui-cell__ft" 
+                  <view class="weui-cell__ft"
                     wx:if="{{!addWaterVD.addTime}}">
-                    <icon 
-                      type="warn" 
-                      size="23" 
+                    <icon
+                      type="warn"
+                      size="23"
                       color="#E64340"></icon>
                   </view>
                 </view>
@@ -98,9 +97,9 @@
                     <view class="weui-label">备注</view>
                   </view>
                   <view class="weui-cell__bd">
-                    <input class="weui-input" 
-                      value="{{addWater.remark}}" 
-                      placeholder="Remark" 
+                    <input class="weui-input"
+                      value="{{addWater.remark}}"
+                      placeholder="Remark"
                       bindinput="bindKeyInputWaterRemark" />
                   </view>
                 </view>
@@ -116,46 +115,46 @@
             </view>
             <view class="weui-cells weui-cells_after-title">
               <view class="button-sp-area">
-                <button class="weui-btn" 
-                  type="primary" 
+                <button class="weui-btn"
+                  type="primary"
                   bindtap="bindAddWater">抄水表</button>
               </view>
             </view>
-            <view class="weui-panel__hd" 
+            <view class="weui-panel__hd"
               hidden="{{!houseList[addWaterSelect.haoIndex].calWaters.length}}">
               <view class="weui-cell fix-cell">
                 <view class="weui-cell__hd">
                   <view class="weui-label">上次抄表时间</view>
                 </view>
                 <view class="weui-cell__bd">今次 - 上次</view>
-                <view class="weui-cell__bd" 
+                <view class="weui-cell__bd"
                   style="text-align: right;">= 小计</view>
               </view>
             </view>
-            <view class="weui-panel__bd" 
+            <view class="weui-panel__bd"
               hidden="{{!houseList[addWaterSelect.haoIndex].calWaters.length}}">
               <view class="weui-cells weui-cells_after-title">
                 <view class="weui-cell mini_bd">
                   <view class="weui-cell__hd">
                     <view class="weui-label">
-                      <view 
-                        wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}" 
+                      <view
+                        wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}"
                         wx:key="_id">
                         {{item.tnew.addTime}}
                       </view>
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <view 
-                      wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}" 
+                    <view
+                      wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}"
                       wx:key="_id">
                       {{item.tnew.water}} - {{item.old.water}}
                     </view>
                   </view>
-                  <view class="weui-cell__bd" 
+                  <view class="weui-cell__bd"
                     style="text-align: right;">
-                    <view 
-                      wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}" 
+                    <view
+                      wx:for="{{houseList[addWaterSelect.haoIndex].calWaters}}"
                       wx:key="_id">
                       = {{item.gap}}吨
                     </view>
@@ -170,47 +169,47 @@
         <view class="weui-search-bar">
           <view class="weui-search-bar__form">
             <view class="weui-search-bar__box">
-              <icon class="weui-icon-search_in-box" 
-                type="search" 
+              <icon class="weui-icon-search_in-box"
+                type="search"
                 size="14"></icon>
-              <picker class="weui-search-bar__input" 
-                mode="date" 
-                value="{{waterDateView}}" 
+              <picker class="weui-search-bar__input"
+                mode="date"
+                value="{{waterDateView}}"
                 bindchange="bindWaterDateChange">
                 <label class="weui-search-bar__label">
-                  <icon class="weui-icon-search" 
-                    type="search" 
+                  <icon class="weui-icon-search"
+                    type="search"
                     size="14"></icon>
                   <view class="weui-search-bar__text">{{waterDateView}}</view>
                 </label>
               </picker>
             </view>
           </view>
-          <view class="weui-search-bar__cancel-btn" 
-            hidden="{{waterDateView == today}}" 
+          <view class="weui-search-bar__cancel-btn"
+            hidden="{{waterDateView == today}}"
             bindtap="bindWaterGoToToday">今日</view>
         </view>
 
         <!--结果-->
-        <view class="weui-panel" 
+        <view class="weui-panel"
           wx:if="{{waterDate.length}}">
           <view class="weui-panel__hd">抄表日期：{{waterDateView}}</view>
           <view class="weui-panel__bd">
-            <view class="weui-media-box weui-media-box_text" 
-              wx:for="{{waterDate}}" 
+            <view class="weui-media-box weui-media-box_text"
+              wx:for="{{waterDate}}"
               wx:key="_id">
               <view class="weui-media-box__title">{{item.fanghao}}：{{item.water}}吨</view>
             </view>
           </view>
         </view>
-        <view 
+        <view
           wx:if="{{!waterDate.length}}">
           <view class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
           </view>
         </view>
       </view>
-      <view class="weui-tab__content" 
+      <view class="weui-tab__content"
         hidden="{{activeIndex != 1}}">
 
         <!--抄表-->
@@ -226,21 +225,21 @@
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <picker 
-                      value="{{addElectricSelect.haoIndex}}" 
-                      range="{{houseList}}" 
-                      range-key="fanghao" 
+                    <picker
+                      value="{{addElectricSelect.haoIndex}}"
+                      range="{{houseList}}"
+                      range-key="fanghao"
                       bindchange="bindHouseElectricPickerChange">
                       <view class="weui-select weui-select_in-select-after">
                         {{houseList[addElectricSelect.haoIndex] ? houseList[addElectricSelect.haoIndex].fanghao : '请选择'}}
                       </view>
                     </picker>
                   </view>
-                  <view class="weui-cell__ft" 
+                  <view class="weui-cell__ft"
                     wx:if="{{!addElectricVD.haoId}}">
-                    <icon 
-                      type="warn" 
-                      size="23" 
+                    <icon
+                      type="warn"
+                      size="23"
                       color="#E64340"></icon>
                   </view>
                 </view>
@@ -252,16 +251,16 @@
                   </view>
                   <view class="weui-cell__bd">
                     <input class="weui-input"
-                      type="digit"  
-                      value="{{addElectric.electric}}" 
-                      placeholder="Number" 
+                      type="digit"
+                      value="{{addElectric.electric}}"
+                      placeholder="Number"
                       bindinput="bindKeyInputElectric" />
                   </view>
-                  <view class="weui-cell__ft" 
+                  <view class="weui-cell__ft"
                     wx:if="{{!addElectricVD.electric}}">
-                    <icon 
-                      type="warn" 
-                      size="23" 
+                    <icon
+                      type="warn"
+                      size="23"
                       color="#E64340"></icon>
                   </view>
                 </view>
@@ -272,18 +271,18 @@
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <picker 
-                      mode="date" 
-                      value="{{addElectric.addTime}}" 
+                    <picker
+                      mode="date"
+                      value="{{addElectric.addTime}}"
                       bindchange="bindAddElectricDateChange">
                       <view class="weui-input">{{addElectric.addTime}}</view>
                     </picker>
                   </view>
-                  <view class="weui-cell__ft" 
+                  <view class="weui-cell__ft"
                     wx:if="{{!addElectricVD.addTime}}">
-                    <icon 
-                      type="warn" 
-                      size="23" 
+                    <icon
+                      type="warn"
+                      size="23"
                       color="#E64340"></icon>
                   </view>
                 </view>
@@ -292,9 +291,9 @@
                     <view class="weui-label">备注</view>
                   </view>
                   <view class="weui-cell__bd">
-                    <input class="weui-input" 
-                      value="{{addElectric.remark}}" 
-                      placeholder="Remark" 
+                    <input class="weui-input"
+                      value="{{addElectric.remark}}"
+                      placeholder="Remark"
                       bindinput="bindKeyInputElectricRemark" />
                   </view>
                 </view>
@@ -310,46 +309,46 @@
             </view>
             <view class="weui-cells weui-cells_after-title">
               <view class="button-sp-area">
-                <button class="weui-btn" 
-                  type="primary" 
+                <button class="weui-btn"
+                  type="primary"
                   bindtap="bindAddElectric">抄电表</button>
               </view>
             </view>
-            <view class="weui-panel__hd" 
+            <view class="weui-panel__hd"
               hidden="{{!houseList[addElectricSelect.haoIndex].calElectrics.length}}">
               <view class="weui-cell fix-cell">
                 <view class="weui-cell__hd">
                   <view class="weui-label">上次抄表时间</view>
                 </view>
                 <view class="weui-cell__bd">今次 - 上次</view>
-                <view class="weui-cell__bd" 
+                <view class="weui-cell__bd"
                   style="text-align: right;">= 小计</view>
               </view>
             </view>
-            <view class="weui-panel__bd" 
+            <view class="weui-panel__bd"
               hidden="{{!houseList[addElectricSelect.haoIndex].calElectrics.length}}">
               <view class="weui-cells weui-cells_after-title">
                 <view class="weui-cell mini_bd">
                   <view class="weui-cell__hd">
                     <view class="weui-label">
-                      <view 
-                        wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}" 
+                      <view
+                        wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}"
                         wx:key="_id">
                         {{item.tnew.addTime}}
                       </view>
                     </view>
                   </view>
                   <view class="weui-cell__bd">
-                    <view 
-                      wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}" 
+                    <view
+                      wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}"
                       wx:key="_id">
                       {{item.tnew.electric}} - {{item.old.electric}}
                     </view>
                   </view>
-                  <view class="weui-cell__bd" 
+                  <view class="weui-cell__bd"
                     style="text-align: right;">
-                    <view 
-                      wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}" 
+                    <view
+                      wx:for="{{houseList[addElectricSelect.haoIndex].calElectrics}}"
                       wx:key="_id">
                       = {{item.gap}}度
                     </view>
@@ -364,40 +363,40 @@
         <view class="weui-search-bar">
           <view class="weui-search-bar__form">
             <view class="weui-search-bar__box">
-              <icon class="weui-icon-search_in-box" 
-                type="search" 
+              <icon class="weui-icon-search_in-box"
+                type="search"
                 size="14"></icon>
-              <picker 
-                class="weui-search-bar__input" 
-                mode="date" 
-                value="{{electricDateView}}" 
+              <picker
+                class="weui-search-bar__input"
+                mode="date"
+                value="{{electricDateView}}"
                 bindchange="bindElectricDateChange">
                 <label class="weui-search-bar__label">
-                  <icon class="weui-icon-search" 
-                    type="search" 
+                  <icon class="weui-icon-search"
+                    type="search"
                     size="14"></icon>
                   <view class="weui-search-bar__text">{{electricDateView}}</view>
                 </label>
               </picker>
             </view>
           </view>
-          <view class="weui-search-bar__cancel-btn" 
-            hidden="{{electricDateView == today}}" 
+          <view class="weui-search-bar__cancel-btn"
+            hidden="{{electricDateView == today}}"
             bindtap="bindElectricGoToToday">今日</view>
         </view>
 
         <!--结果-->
-        <view class="weui-panel" 
+        <view class="weui-panel"
           wx:if="{{electricDate.length}}">
           <view class="weui-panel__hd">抄表日期：{{electricDateView}}</view>
           <view class="weui-panel__bd">
-            <view class="weui-media-box weui-media-box_text" 
+            <view class="weui-media-box weui-media-box_text"
               wx:for="{{electricDate}}" wx:key="_id">
               <view class="weui-media-box__title">{{item.fanghao}}：{{item.electric}}度</view>
             </view>
           </view>
         </view>
-        <view 
+        <view
           wx:if="{{!electricDate.length}}">
           <view class="weui-loadmore weui-loadmore_line">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>

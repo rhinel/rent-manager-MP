@@ -363,7 +363,7 @@ Page({
       'addElectricVD.addTime': !!that.data.addElectric.addTime
     })
     if (!this.data.addElectricVD.haoId ||
-      !this.data.addElectricVD.electric || 
+      !this.data.addElectricVD.electric ||
       !this.data.addElectricVD.addTime
     ) {
       return
